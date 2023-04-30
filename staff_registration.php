@@ -41,7 +41,7 @@ if(isset($_POST['submit'])){
 	<link rel="stylesheet" type="text/css" href="css/staff_registration.css">
 </head>
 <body>
-   <div class="logo">	<img src="css/images/logo.png" alt="Hospital Link Logo" width="100" height="100" > </div>
+   <div class="logo">	<img src="css/images/logo2.png" alt="Hospital Link Logo" width="100" height="100" > </div>
    <div class="h1"> <h1>Hospital Information System</h1> </div>
         
 	<div class="container">

@@ -1,8 +1,9 @@
 body {
 	margin: 0;
 	padding: 0;
-	background: #FFFFFF;
 	font-family: sans-serif;
+	background-image: url(../css/images/hospital3.png);
+	background-size: cover;
 }
 
 .logo {
@@ -10,7 +11,7 @@ body {
 	text-align: center;
   }
 .hl {
-	color: #0578C0;
+	color: #065688;
 }
 
 .login-box {
