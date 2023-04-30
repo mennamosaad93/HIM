@@ -1,3 +1,33 @@
+<?php
+include 'connection.php';
+if(isset($_POST['submit'])){
+  $PID = mysqli_real_escape_string($con,$_POST['PID']);
+  $firstname = mysqli_real_escape_string($con,$_POST['firstname']);
+  $lastname = mysqli_real_escape_string($con,$_POST['lastname']);
+  $phone = mysqli_real_escape_string($con,$_POST['phone']);
+  $gender = mysqli_real_escape_string($con,$_POST['gender']);
+  $birthdate = mysqli_real_escape_string($con,$_POST['birthdate']);
+  $email = mysqli_real_escape_string($con,$_POST['email']);
+  $address = mysqli_real_escape_string($con,$_POST['address']);
+  $q = mysqli_query($con, "SELECT * FROM registration WHERE PID = '$PID' or email ='$email'");
+  if(mysqli_num_rows($q) > 0 ){
+    echo 
+    "<script> alert('ID of email has already taken'); </script>";
+  }
+  else{
+    if($PID != $phone){
+      $query="INSERT INTO registration VALUES('','$PID','$firstname','$lastname','$phone','$gender','$birthdate','$email','$address')";
+      mysqli_query($con,$query);
+      echo 
+      "<script> alert('Rigstration success'); </script>";
+    }
+    else{
+      echo 
+      "<script> alert('Something is wrong'); </script>";
+    }
+  }
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,8 +50,8 @@
 			<label for="lastname">Last Name:</label>
 			<input type="text" id="lastname" name="lastname" required>
 
-			<label for="ID">ID:</label>
-			<input type="text" id="ID" name="ID" required>
+			<label for="PID">ID:</label>
+			<input type="text" id="PID" name="PID" required>
 
 			<label for="phone">Phone Number:</label>
 			<input type="tel" id="phone" name="phone" required>
@@ -41,7 +71,7 @@
 			<label for="address">Address:</label>
 			<textarea id="address" name="address" required></textarea>
 
-			<input type="submit" value="Register">
+			<input type="submit" name="submit" value="Register">
               
 		</form>
 	</div>
