@@ -13,7 +13,7 @@ if(isset($_POST['submit'])){
   $conpassword = mysqli_real_escape_string($con,$_POST['conpassword']);
   $qualifications = mysqli_real_escape_string($con,$_POST['qualifications']);
   $address = mysqli_real_escape_string($con,$_POST['address']);
-  $q = mysqli_query($con, "SELECT * FROM staff WHERE PID = '$PID' or email ='$email'");
+  $q = mysqli_query($con, "SELECT * FROM staff WHERE PID = '$PID' or emaill ='$email'");
   if(mysqli_num_rows($q) > 0 ){
     echo 
     "<script> alert('ID of email has already taken'); </script>";

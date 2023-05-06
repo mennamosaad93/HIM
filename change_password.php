@@ -6,7 +6,7 @@
   </head>
   <body>
     <div class="change-password-box">
-      <div class="logo"><img src="css/images/logo.png" class="avatar" width="100" height="100" ></div>
+      <div class="logo"><img src="css/images/logo2.png" class="avatar" width="100" height="100" ></div>
       <div class="name"><h1>Hospital Information System</h1></div>
       <div class="change-password-form">
         <h2>Change Password</h2>

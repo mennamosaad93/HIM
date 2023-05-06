@@ -7,7 +7,7 @@
   <body>
     <div class="login-box">
       <!-- <div class="logo"><img src="css/images/key.jpg" class="avatar" width="190" height="200" ></div> -->
-      <div class="logo"><img src="css/images/logo.png" class="avatar" width="100" height="100" ></div>
+      <div class="logo"><img src="css/images/logo2.png" class="avatar" width="100" height="100" ></div>
 		<div class="name"><h1>Hospital Information System</h1></div>
   
     <div class="login-form">
