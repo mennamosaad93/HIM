@@ -3,13 +3,16 @@ include 'connection.php';
     if(isset($_POST['submit'])){
     $email = $_POST["email"];
     $password = $_POST["password"];
-    $Result = mysqli_query($con, "SELECT * FROM emails WHERE email or emaill='$email'" );
-    $row = mysqli_fetch_assoc($Result);
+    $Result = mysqli_query($con, "SELECT * FROM staff JOIN registration WHERE email='$email' OR emaill='$email'" );
+    $row = mysqli_fetch_array($Result);
     if(mysqli_num_rows($Result) > 0 ){
-        if($Password == $row["Password"]){
+        if($password == $row["passwords"] || $password == $row["password"])
+        {
+            session_start();
             $_SESSION["login"] = true;
             
             header("location: indes.php");
+            exit();
         }
         else{
             echo 
