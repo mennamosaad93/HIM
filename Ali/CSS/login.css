@@ -1,0 +1,84 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+	background-image: url(../css/images/hospital3.png);
+	background-size: cover;
+}
+
+.logo {
+	margin: auto;
+	text-align: center;
+}
+.hl {
+	color: #0578C0;
+}
+
+.login-box {
+	background:rgba(255,255,255,.8);
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 30px;
+	width: 280px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: #064c77;
+}
+
+.login-box h1 {
+	font-family:'Poppins', sans-serif;
+	margin: 0;
+	padding: 0 0 20px;
+	text-align: center;
+	font-size: 22px;
+}
+
+.login-box p {
+	margin: 0;
+	padding: 0;
+	font-weight: bold;
+}
+
+.login-box input {
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.login-box input[type="text"],
+.login-box input[type="password"] {
+	border: none;
+	border-bottom: 1px solid #333333;
+	background: transparent;
+	outline: none;
+	height: 40px;
+	color: #333333;
+	font-size: 16px;
+}
+
+.login-box input[type="submit"] {
+	border: none;
+	outline: none;
+	height: 40px;
+	background: #007BFF;
+	color: #FFFFFF;
+	font-size: 18px;
+	border-radius: 20px;
+	cursor: pointer;
+}
+
+.login-box input[type="submit"]:hover {
+	background: #0066CC;
+	color: #FFFFFF;
+}
+
+.login-box a {
+	text-decoration: none;
+	font-size: 14px;
+	color: #333333;
+}
+
+.login-box a:hover {
+	color: #0066CC;
+}
