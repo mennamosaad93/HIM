@@ -1,0 +1,640 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth; 
+}
+/* header */
+header {
+    background-color: #e2eafc;
+    width: 100%;
+    position: fixed;
+    z-index: 999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 150px ;
+}
+
+.logo{
+    text-decoration: none;
+    color: #0578C0;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1.8em;
+    position: relative;
+    right: 90px;
+}
+
+.logo_image {
+    position: relative;
+    right: 100px;
+}
+
+.navigation a{
+    color: #3a6cf4;
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: 500;
+    padding-left: 10px;
+}
+
+.navigation a:hover{
+    color: #03045e;
+}
+
+section {
+    padding: 100px 200px;
+}
+
+/* main */
+.main {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: url(../CSS/Images/nurse.png) no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.main h2 {
+    color: #6d6e6d;
+    font-size: 2em;
+    font-weight: 500;
+}
+
+.main h2 span {
+    display: inline-block;
+    margin-top: 10px;
+    color: #05717a;
+    font-size: 1.7em;
+    font-weight: 600;
+}
+
+.main h3 {
+    color: #5a5c5a;
+    font-size: 1.4em;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    height: 100%;
+    width: 70%;
+}
+
+/*main (the bottom) */
+.main-btn {
+    color: #fff;
+    background-color: #25a18e;
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: 600;
+    display: inline-block;
+    padding: 0.9375em 2.1875em;
+    letter-spacing: 1px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+    transition: 0.7s ease;
+}
+
+.main-btn:hover {
+    background-color: #081c15;
+    transform: scale(1.1);
+}
+
+/* social icons */
+.social-icons a {
+    color: #000;
+    font-size: 1.7em;
+    padding-right: 30px;
+}
+
+/* map design */
+.map{
+    position: relative;
+    height: 750px;
+}
+
+.map_text {
+    background-color: #25a18e;
+    width: 550px;
+    text-align: center;
+    position: relative;
+    left: 400px;
+}
+
+.map h2 {
+    font-size: 2.8em;
+    letter-spacing: 1px;
+    font-weight: 700;
+    margin-top: 40px;
+    margin-bottom: 80px;
+    color: #eaf4f4;
+    border-radius: 30px;
+}
+
+.map .map_img {
+    position: relative;
+}
+
+/* patient information background */
+.patient-background{
+    /* background: linear-gradient(#1f7a8c,#c5c3c6); */
+    background: linear-gradient(#081c15,#25a18e);
+    background-size: cover;
+    height: 720px;
+}
+
+/* search bar */
+.search-bar {
+    display: flex;
+    align-items: center;
+    position: relative;
+    left: 110px;
+    top: 150px;
+    width: 80%;
+    padding: 20px;
+  }
+
+  .search-bar label{
+    font-size: 25px;
+    font-weight: 500;
+    color: #caf0f8;
+    position: relative;
+    left: 50px;
+  }
+
+.search-bar input[type="text"] {
+    border: 2px solid #25a18e ; 
+    padding: 8px;
+    border-radius: 15px;
+    width: 700px;
+    position: relative;
+    left: 15px;
+    top: 10px;
+  }
+
+.search-bar button[type="submit"] {
+    background-color: #caf0f8;
+    color: #135248;
+    font-weight: 600;
+    padding: 13px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    position: relative;
+    left: 30px;
+  }
+
+
+/* patient-information table */
+.patient-information {
+	margin-bottom: 40px;
+  }
+
+  .patient-information h2 {
+    background-color: #e9ecef;
+    width: 550px;
+    text-align: center;
+    position: relative;
+    top: 150px;
+    left: 200px;
+    font-size: 2.2em;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-top: 40px;
+    margin-bottom: 50px;
+    color: #1a6b5e;
+    border-radius: 30px;
+  }
+
+  .patient-information table {
+	width: 138%;
+	border-collapse: collapse;
+    position: relative;
+    top: 150px;
+    right: 180px;
+  }
+
+  .patient-information th,
+  .patient-information td {
+    border: 1px solid #e9ecef;
+	padding: 10px;
+	text-align: left;
+  }
+
+  .patient-information th {
+    background-color: #e9ecef;
+	font-weight: bold;
+  }
+
+  .patient-information a {
+  text-decoration: none;
+  color: #caf0f8;
+  }
+
+  /*add notes  */
+  .add-notes {
+    background-image: url(../CSS/Images/notes.png);
+    border-radius: 20px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    padding: 50px ;
+    margin-bottom: 150px;
+    position: relative;
+    top: 100px;
+    left: 70px;
+    overflow: hidden;
+  }
+
+  .add-notes h2 {
+    color: #38c5a4;
+    position: relative;
+    bottom:  20px;
+  }
+
+  form fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  form legend {
+    color: #91928d;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  form label {
+    color: #000000;
+    display: inline-block;
+    width: 150px;
+    margin-right: 10px;
+    font-weight: bold;
+  }
+
+  form input[type="text"],
+  form input[type="number"] {
+    padding: 5px;
+    border: 1px solid #38c5a4;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 300px;
+    margin-bottom: 20px;
+  }
+
+  form input[type="text"]:focus,
+  form input[type="number"]:focus {
+    outline: none;
+    border-color: #2f4858;
+  }
+
+  .add-notes button[type="submit"] {
+    background-color: #38c5a4;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  
+  .add-notes button[type="submit"]:hover {
+    background-color: #1c6655;
+}
+
+/*add bills  */
+.add-bills {
+  background-image: url(../CSS/Images/bill.png);
+  border-radius: 20px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  padding: 50px ;
+  margin-bottom: 150px;
+  position: relative;
+  top: 100px;
+  left: 70px;
+  overflow: hidden;
+}
+
+.add-bills h2 {
+  color: #38c5a4;
+  position: relative;
+  bottom:  20px;
+}
+
+form fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+form legend {
+  color: #91928d;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+form label {
+  color: #000000;
+  display: inline-block;
+  width: 150px;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.add-bills form input[type="text"],
+.add-bills form input[type="number"],
+.add-bills form input[type="date"] {
+  padding: 5px;
+  border: 1px solid #38c5a4;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 300px;
+  margin-bottom: 20px;
+}
+
+.add-bills form input[type="text"]:focus,
+.add-bills form input[type="number"]:focus,
+.add-bills form input[type="date"]:focus {
+  outline: none;
+  border-color: #2f4858;
+}
+
+.add-bills button[type="submit"] {
+  background-color: #38c5a4;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.add-bills button[type="submit"]:hover {
+  background-color: #1c6655;
+}
+
+/* set nurse schedule */
+.schedule {
+    background-image: url(.//Images/background\ dark\ with\ icons2\ .png);
+    background-size: cover;
+}
+
+.schedule .content{
+    margin-top: 30px;
+}
+
+.schedule-management {
+    margin-bottom: 50px;
+}
+
+  .schedule-management h2 {
+    border-radius: 20px;
+    color: #00B3C4;
+    /* color: #ffd500; */
+    font-size: 40px;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+  .schedule-management form {
+    margin-bottom: 50px;
+
+}
+
+  .schedule-management fieldset {
+    border: none;
+    margin-bottom: 20px;
+}
+
+  .schedule-management legend {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+  .schedule-management label {
+    color: #fff;
+    display: block;
+    margin-bottom: 7px;
+}
+
+  .schedule-management input {
+    /* border: 1px solid #ccc; */
+    border: 2px solid #ffd60a;
+    border-radius: 7px;
+    font-size: 16px;
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+  .schedule-management button {
+    background-color: #ffd60a;
+    border: none;
+    border-radius: 4px;
+    color: #000;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 10px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+  .schedule-management button:hover {
+    background-color: #89c2d9;
+}
+
+  /* this the line between them */
+  .schedule-management hr {
+    border: none;
+    border-top: 1px solid #ffd60a;
+    margin-bottom: 20px;
+}
+
+  .schedule-management h3 {
+    color: #ccc;
+}
+
+  .schedule-management table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+  .schedule-management table th,
+  .schedule-management table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+  .schedule-management table th {
+    background-color: #cbf3f0;
+    font-weight: bold;
+}
+
+  .schedule-management td {
+    color: #fff;
+}
+
+  .schedule-management table td button {
+    background-color: #ffd500;
+    border: none;
+    border-radius: 4px;
+    color: #000;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 5px 10px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+  .schedule-management table td button:first-child {
+    margin-right: 10px;
+}
+
+  .schedule-management table td button:hover {
+    background-color: #89c2d9;
+}
+
+/* The cards */
+.title {
+    display: flex;
+    justify-content: center;
+    color: #1c6655;
+    font-size: 2.2em;
+    font-weight: 800;
+    margin-bottom: 30px;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.card {
+    background-color: #fff;
+    width: 21.25em;
+    box-shadow: 0 5px 25px rgba(1 1 1 / 15%);
+    border-radius: 10px;
+    padding: 25px;
+    margin: 15px;
+    transition: 0.7s ease;
+}
+
+.card:hover {
+    transform: scale(1.1);
+}
+
+.card .icon {
+    color: #1c6655;
+    font-size: 8em;
+    text-align: center;
+}
+
+.info {
+    text-align: center;
+}
+
+.info h3{
+    color: #1c6655;
+    font-size: 1.2em;
+    font-weight: 700;
+    margin: 10px;
+}
+
+.contact .icon{
+    font-size: 4.5em;
+}
+
+.contact .info h3 {
+    color: #000;
+}
+
+.contact .info p {
+    font-size: 1.5em;
+}
+
+
+/* footer */
+.footer {
+    background-color: #01181a;
+    color: #fff;
+    padding: 2em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-title {
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+.footer-title span {
+    color: #38c5a4;
+}
+
+.footer .social-icons a{
+    font-size: 1.3em;
+    padding: 0 12px 0 0;
+}
+
+@media (max-width:1023px){
+    header{
+        padding: 12px 20px;
+    }
+
+    .navigation a{
+        padding-left: 10px;
+    }
+
+    .title{
+        font-size: 1.8em;
+    }
+
+    section{
+        padding: 80px 20px;
+    }
+
+    .main-content h2{
+        font-size: 1em;
+    }
+
+    .main-content h3{
+        font-size: 1.6em;
+    }
+
+    .content{
+        flex-direction: column;
+        align-items: center;
+    }
+
+}
+
+@media (max-width:641px){
+    body{
+        font-size: 12px;
+    }
+
+    .main-content h2{
+        font-size: 0.8em;
+    }
+
+    .main-content h3{
+        font-size: 1.4em;
+    }
+}
+
+@media (max-width:300px){
+    body{
+        font-size: 10px;
+    }
+}

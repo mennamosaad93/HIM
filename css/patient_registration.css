@@ -14,8 +14,8 @@ body{
 .logo {
 	margin: auto;
 	text-align: center;
-  }
-  
+}
+
 .h1 {
     font-family: Arial, sans-serif;
     color: #0578C0;
@@ -83,14 +83,4 @@ input[type="submit"]:hover {
 textarea {
 	height: 100px;
 	resize: none;
-}
-
-.signin {
-  text-align: center;
-}
-.signin a {
-  color: #337ab7;
-}
-.signin a:hover {
-  text-decoration: underline;
 }

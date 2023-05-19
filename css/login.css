@@ -9,21 +9,26 @@ body {
 .logo {
 	margin: auto;
 	text-align: center;
-  }
+}
 .hl {
-	color: #065688;
+	color: #0578C0;
 }
 
 .login-box {
+	background:rgba(255,255,255,.8);
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 30px;
 	width: 280px;
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	color: #003049;
+	color: #064c77;
 }
 
 .login-box h1 {
+	font-family:'Poppins', sans-serif;
 	margin: 0;
 	padding: 0 0 20px;
 	text-align: center;
@@ -77,4 +82,3 @@ body {
 .login-box a:hover {
 	color: #0066CC;
 }
-
