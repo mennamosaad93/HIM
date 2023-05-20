@@ -13,7 +13,7 @@
     $currentpassword = $_POST["currentpassword"];
     $newpassword = $_POST["newpassword"];
     $conpassword = $_POST["conpassword"];
-
+   
     // $query1 = mysqli_query($con, "SELECT password FROM registration WHERE PID ='$PID' AND password='$currentpassword'");
     $query2 = mysqli_query($con, "SELECT passwords FROM staff WHERE PID='$PID' AND passwords='$currentpassword'");
     // $num1 = mysqli_fetch_array($query1);
