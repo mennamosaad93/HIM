@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="css/change_password.css">
   </head>
   <body>
-    <?php include 'connection.php';
+    <?php include 'connection.php';  
 
     if(isset($_POST['submit'])){
       $PID = $_POST["PID"];
