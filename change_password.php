@@ -14,17 +14,18 @@
     $newpassword = $_POST["newpassword"];
     $conpassword = $_POST["conpassword"];
 
-    $query1 = mysqli_query($con, "SELECT password FROM registration WHERE PID ='$PID' AND password='$currentpassword'");
+    // $query1 = mysqli_query($con, "SELECT password FROM registration WHERE PID ='$PID' AND password='$currentpassword'");
     $query2 = mysqli_query($con, "SELECT passwords FROM staff WHERE PID='$PID' AND passwords='$currentpassword'");
-    $num1 = mysqli_fetch_array($query1);
+    // $num1 = mysqli_fetch_array($query1);
     $num2 = mysqli_fetch_array($query2);
     
-    if($num1 > 0){
+    // if($num1 > 0){
       
-      $conn = mysqli_query($con," UPDATE registration SET password='$newpassword' WHERE PID ='$PID'");
-      $_SESSION['msg1'] = "Password changed successfully";
+    //   $conn = mysqli_query($con," UPDATE registration SET password='$newpassword' WHERE PID ='$PID'");
+    //   $_SESSION['msg1'] = "Password changed successfully";
 
-     }else if ($num2 > 0){
+    //  }else 
+    if ($num2 > 0){
       
       $conn = mysqli_query($con, "UPDATE staff SET  passwords ='$newpassword', conpassword='$newpassword' WHERE PID ='$PID'");
       $_SESSION['msg1'] = "Password changed successfully";

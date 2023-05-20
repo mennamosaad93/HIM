@@ -8,16 +8,16 @@ if(isset($_POST['submit'])){
   $gender = mysqli_real_escape_string($con,$_POST['gender']);
   $birthdate = mysqli_real_escape_string($con,$_POST['birthdate']);
   $email = mysqli_real_escape_string($con,$_POST['email']);
-  $password = mysqli_real_escape_string($con,$_POST['password']);
+//   $password = mysqli_real_escape_string($con,$_POST['password']);
   $address = mysqli_real_escape_string($con,$_POST['address']);
-  $q = mysqli_query($con, "SELECT * FROM registration WHERE password = '$password' or email ='$email'");
+  $q = mysqli_query($con, "SELECT * FROM registration WHERE PID ='$PID' OR email ='$email'");
   if(mysqli_num_rows($q) > 0 ){
     echo 
     "<script> alert('ID of email has already taken'); </script>";
   }
   else{
     if($PID != $phone){
-      $query="INSERT INTO registration VALUES('','$PID','$firstname','$lastname','$phone','$gender','$birthdate','$email','$password','$address')";
+      $query="INSERT INTO registration VALUES('','$PID','$firstname','$lastname','$phone','$gender','$birthdate','$email','$address')";
       mysqli_query($con,$query);
       echo 
       "<script> alert('Rigstration success'); </script>";
@@ -69,8 +69,8 @@ if(isset($_POST['submit'])){
 			<label for="email">email:</label>
 			<input type="email" id="email" name="email" required>
 
-			<label for="password">password:</label>
-			<input type="password" id="password" name="password" required>
+			<!-- <label for="password">password:</label>
+			<input type="password" id="password" name="password" required> -->
 
 			<label for="address">Address:</label>
 			<textarea id="address" name="address" required></textarea>
