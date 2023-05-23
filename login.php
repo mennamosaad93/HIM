@@ -12,16 +12,20 @@ session_start();
             
             $_SESSION["login"] = true;
             if($row['department'] == 'Admin'){
-                header("location: page-of-admin.html");
+                $_SESSION['admin-name'] = $row['firstname'];
+                header("location: page-of-admin.php");
 
             }elseif($row['department'] == 'Doctor'){
-                header("location: page-of-doctor.html");
+                $_SESSION['admin-name'] = $row['firstname'];
+                header("location: page-of-doctor.php");
 
             }elseif($row['department'] == 'Nurse'){
-                header("location: page-of-nurse.html");
+                $_SESSION['admin-name'] = $row['firstname'];
+                header("location: page-of-nurse.php");
 
             }elseif($row['department'] == 'accountant'){
-                header("location: page-of-accountant.html");
+                $_SESSION['admin-name'] = $row['firstname'];
+                header("location: page-of-accountant.php");
             }
             
             

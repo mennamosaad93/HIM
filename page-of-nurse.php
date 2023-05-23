@@ -1,3 +1,7 @@
+<?php
+include 'connection.php';
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,14 +11,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--this external file to the icon in page-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="CSS/page-of-doctor.css">
+    <link rel="stylesheet" href="CSS/page-of-nurse.css">
     <title>Hospital Information System</title>
 </head>
 
 <body>
     <!-- Header -->
     <header>
-        <div class="logo_image"> <img src="CSS/images/logo2.png" alt="HIS Logo" width="80" height="80"> </div>
+        <div class="logo_image"> <img src="css/images/logo2.png" alt="HIS Logo" width="80" height="80"> </div>
         <a href="#" class="logo">Hospital Information System</a>
         <nav class="navigation">
             <a href="#map">The Map</a>
@@ -28,9 +32,9 @@
     <!-- the main -->
     <section class="main">
         <div>
-            <h2>Hello, Doctor Ali Sayed Ali <br><span>Hospital Information System</span></h2>
+            <h2>Hello, Nurse:  <strong><?php echo $_SESSION['admin-name']; ?></strong> <br><span>Hospital Information System</span></h2>
             <h3>This system was created to help hospitals manage their internal affairs and assist hospital staff</h3>
-            <a href="#schedule" class="main-btn">Manage my work</a>
+            <a href="#schedule" class="main-btn">Manage  my work</a>
             <div class="social-icons">
                 <a href="#"><i class="fab fa-linkedin"></i></a>
                 <a href="#"><i class="fab fa-twitter"></i></a>
@@ -43,12 +47,11 @@
     <!-- the map -->
     <div class="map">
         <h2 class="map_text" id="map">Hospital Map</h2>
-        <img class="map_img" src="CSS/images/hospital_map2.png" alt="Not Found" width="1300">
+        <img class="map_img" src="CSS/Images/hospital_map2.png" alt="Not Found" width="1300">
     </div>
 
     <!-- patient search background -->
     <div class="patient-background">
-
     <!-- search bar -->
         <div id="search-bar">
             <form class="search-bar">
@@ -110,9 +113,10 @@
         </section>
     </div>
 
-    <!-- Add medications -->
-    <section class="add-medication-doses">
-        <h2>Add Medication Doses</h2>
+
+    <!-- Add notes -->
+    <section class="add-notes">
+        <h2>Add notes to the patient</h2>
         <form>
             <fieldset>
                 <legend>Patient Information</legend>
@@ -121,24 +125,12 @@
             </fieldset>
 
             <fieldset>
-                <legend>Medication Information</legend>
-                <label for="medication-name">Medication Name:</label>
-                <input type="text" id="medication-name" name="medication-name" ><br>
-
-                <label for="dosage">Dosage:</label>
-                <input type="text" id="dosage" name="dosage" ><br>
-
-                <label for="frequency">Frequency:</label>
-                <input type="text" id="frequency" name="frequency" ><br>
-
-                <label for="duration">Duration:</label>
-                <input type="text" id="duration" name="duration" ><br>
-
-                <label class="notes" for="note">Add Notes:</label>
-                <input type="text" id="note" name="note" ><br>
+                <legend>Add Notes</legend>
+                <label for="add-notes">The Notes:</label>
+                <input type="text" id="add-notes" name="add-notes" required><br>
             </fieldset>
 
-            <button type="submit">Add Medication Dose</button>
+            <button type="submit">Add notes</button>
         </form>
     </section>
 
@@ -155,7 +147,7 @@
             <fieldset>
                 <legend>Bills Information</legend>
                 <label for="bill-amount">Bill Amount:</label>
-                <input type="text" id="bill-amount" name="bill-amount" required><br>
+                <input type="number" id="bill-amount" name="bill-amount" required><br>
 
                 <label for="bill-description">Bill Description:</label>
                 <input type="text" id="bill-description" name="bill-description" required><br>
@@ -164,15 +156,15 @@
                 <input type="date" id="bill-date" name="bill-date" required><br>
             </fieldset>
 
-            <button type="submit">Add Medication Dose</button>
+            <button type="submit">Add notes</button>
         </form>
     </section>
 
-    <!-- The set schedule -->
+    <!-- The schedule -->
     <section class="schedule" id="schedule">
         <div class="content">
             <section class="schedule-management">
-                <h2>Manage Doctor's Schedule</h2>
+                <h2>Manage Nurse's Schedule</h2>
                 <form>
                     <fieldset>
                         <legend>Set Your Availability</legend>
@@ -192,7 +184,7 @@
                     <button type="submit">Set Availability</button>
                 </form>
                 <hr>
-    <!-- the table schedule -->
+    <!-- set nurse schedule -->
                 <h3>Your Schedule</h3>
                 <table>
                     <thead>
@@ -234,7 +226,7 @@
                     </tbody>
                 </table>
             </section>
-            
+
         </div>
     </section>
 

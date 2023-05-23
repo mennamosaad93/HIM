@@ -1,3 +1,7 @@
+<?php
+include 'connection.php';
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,7 +33,7 @@
     <!-- the main -->
     <section class="main">
         <div>
-            <h2>Hello, Accountant: Youssef Ahmed <br><span>Hospital Information System</span></h2>
+            <h2>Hello, Accountant:<strong><?php echo $_SESSION['admin-name']; ?><br><span>Hospital Information System</span></h2>
             <h3>This system was created to help hospitals manage their internal affairs and assist hospital staff</h3>
             <a href="#schedule" class="main-btn">Manage  my work</a>
             <div class="social-icons">
