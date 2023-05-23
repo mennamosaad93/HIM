@@ -1,6 +1,9 @@
 <?php
 include 'connection.php';
 session_start();
+if(!isset($_SESSION['admin-name'])){
+    header('location: login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,6 +30,7 @@ session_start();
             <a href="#Staff-Search">Staff Search</a>
             <a href="#contact">Contact</a>
             <a href="Policies.html">Policies</a>
+            <a href="logout.php">Logout</a>
         </nav>
     </header>
 
