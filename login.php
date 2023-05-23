@@ -1,5 +1,6 @@
 <?php
 include 'connection.php';
+session_start();
     if(isset($_POST['submit'])){
     $email = $_POST["email"];
     $password = $_POST["password"];
@@ -8,11 +9,23 @@ include 'connection.php';
     if(mysqli_num_rows($Result) > 0 ){
         if($password == $row["passwords"])
         {
-            session_start();
-            $_SESSION["login"] = true;
             
-            header("location: indes.php");
-            exit();
+            $_SESSION["login"] = true;
+            if($row['department'] == 'Admin'){
+                header("location: page-of-admin.html");
+
+            }elseif($row['department'] == 'Doctor'){
+                header("location: page-of-doctor.html");
+
+            }elseif($row['department'] == 'Nurse'){
+                header("location: page-of-nurse.html");
+
+            }elseif($row['department'] == 'accountant'){
+                header("location: page-of-accountant.html");
+            }
+            
+            
+            
         }
         else{
             echo 

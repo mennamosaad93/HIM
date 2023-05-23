@@ -12,6 +12,7 @@ if(isset($_POST['submit'])){
   $password = mysqli_real_escape_string($con,$_POST['password']);
   $conpassword = mysqli_real_escape_string($con,$_POST['conpassword']);
   $qualifications = mysqli_real_escape_string($con,$_POST['qualifications']);
+  $salary = mysqli_real_escape_string($con,$_POST['salary']);
   $address = mysqli_real_escape_string($con,$_POST['address']);
   $q = mysqli_query($con, "SELECT * FROM staff WHERE PID = '$PID' or emaill ='$email'");
   if(mysqli_num_rows($q) > 0 ){
@@ -20,7 +21,7 @@ if(isset($_POST['submit'])){
   }
   else{
     if($password == $conpassword){
-      $query="INSERT INTO staff VALUES('','$PID','$firstname','$lastname','$phone','$gender','$birthdate','$email','$department','$password','$conpassword','$qualifications','$address')";
+      $query="INSERT INTO staff VALUES('','$PID','$firstname','$lastname','$phone','$gender','$birthdate','$email','$department','$password','$conpassword','$qualifications','$salary','$address')";
       mysqli_query($con,$query);
       echo 
       "<script> alert('Rigstration success'); </script>";
@@ -38,7 +39,7 @@ if(isset($_POST['submit'])){
 	<title>Hospital Link Registration</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="css/staff_registration.css">
+	<link rel="stylesheet" type="text/css" href="CSS/staff_registration.css">
 </head>
 <body>
    <div class="logo">	<img src="css/images/logo2.png" alt="Hospital Link Logo" width="100" height="100" > </div>
@@ -73,9 +74,9 @@ if(isset($_POST['submit'])){
 
             <label for="department">Department:</label>
 			<select id="department" name="department">
-				<option value="Administrator">Administrator</option>
-                <option value="staff">Staff</option>
-                <option value="IT">IT</option>
+                <option value="Admin">Admin</option>
+                <option value="doctor">Doctor</option>
+                <option value="nurse">Nurse</option>
                 <option value="accountant">Accountant</option>
 			</select>
 
@@ -87,6 +88,10 @@ if(isset($_POST['submit'])){
 
 			<label for="qualifications">Qualifications:</label>
 			<input type="text" id="qualifications" name="qualifications" >
+
+      
+			<label for="salary">Salary:</label>
+			<input type="number" id="salary" name="salary" >
 			
 
 			<label for="address">Address:</label>
