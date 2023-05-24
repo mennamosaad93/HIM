@@ -4,6 +4,9 @@ session_start();
 if(!isset($_SESSION['admin-name'])){
     header('location: login.php');
 }
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,10 +59,10 @@ if(!isset($_SESSION['admin-name'])){
     <div class="patient-background">
     <!-- search bar -->
         <div id="search-bar">
-            <form class="search-bar">
+            <form class="search-bar" action="page-of-admin.php" method="post">
                 <label for="search">Patient search:</label>
-                <input type="text" placeholder="Search by Room or ID">
-                <button type="submit">Search</button>
+                <input type="text" name="search" placeholder="Search by Room or ID">
+                <button type="submit" name="submit">Search</button>
             </form>
         </div>
     <!-- add patient button -->
@@ -67,44 +70,59 @@ if(!isset($_SESSION['admin-name'])){
     <!-- patient information -->
         <section class="patient-information">
             <h2>Patient Information</h2>
+            <?php
+
+
+
+if (isset($_POST["submit"])) {
+	$str = $_POST["search"];
+	$sql ="SELECT * FROM registration WHERE PID= '$str'";
+    $query=mysqli_query($con,$sql);
+
+
+	// $sth->setFetchMode(PDO:: FETCH_OBJ);
+	// $sth -> execute();
+
+	if(mysqli_num_rows($query) > 0)
+    {  $count="0";
+        while($row=mysqli_fetch_assoc($query)) 
+        { $count++;
+        
+
+
+    
+	
+		?>
             <table>
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
                         <th>Room</th>
-                        <th>Age</th>
+                        <th>Birthdate</th>
                         <th>Patient bill</th>
                         <th>More Information</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>1</td>
-                        <td>Ahmed Ali</td>
+                        <td><?php print_r($row['PID']);  ?></td>
+                        <td><?php print_r($row['firstname']) ." ".print_r($row['lastname']); ?></td>
                         <td>101</td>
-                        <td>45</td>
+                        <td><?php print_r($row['birthdate']); ?></td>
                         <td>$1.750</td>
-                        <td><a href="patient-information.html">Click here</a></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Mohamed Abdallah</td>
-                        <td>102</td>
-                        <td>30</td>
-                        <td>$10.000</td>
-                        <td><a href="patient-information.html">Click here</a></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Sara Ayman</td>
-                        <td>103</td>
-                        <td>50</td>
-                        <td>$3.000</td>
                         <td><a href="patient-information.html">Click here</a></td>
                     </tr>
                 </tbody>
             </table>
+            <?php
+    }
+        
+    }else{
+        echo "ID doesnt exist";
+    }
+}
+    ?>
         </section>
     </div>
 

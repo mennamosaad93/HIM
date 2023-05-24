@@ -74,6 +74,9 @@ if(isset($_POST['submit'])){
 
 			<label for="address">Address:</label>
 			<textarea id="address" name="address" required></textarea>
+			
+			<label for="medical-history">Medical History:</label>
+			<textarea id="medical-history" name="medical-history" required></textarea>
 
 			<input type="submit" name="submit" value="Register">
               
