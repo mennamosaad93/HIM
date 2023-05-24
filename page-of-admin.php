@@ -31,6 +31,7 @@ if(!isset($_SESSION['admin-name'])){
             <a href="#search-bar">Search Patient</a>
             <a href="#staff-search-bar">Search Staff</a>
             <a href="Policies.html">Policies</a>
+            <a href="logout.php">Logout</a>
         </nav>
     </header>
 
@@ -59,7 +60,7 @@ if(!isset($_SESSION['admin-name'])){
     <div class="patient-background">
     <!-- search bar -->
         <div id="search-bar">
-            <form class="search-bar" action="page-of-admin.php" method="post">
+            <form class="search-bar" action="page-of-admin.php#search-bar" method="post">
                 <label for="search">Patient search:</label>
                 <input type="text" name="search" placeholder="Search by Room or ID">
                 <button type="submit" name="submit">Search</button>
@@ -107,7 +108,7 @@ if (isset($_POST["submit"])) {
                 <tbody>
                     <tr>
                         <td><?php print_r($row['PID']);  ?></td>
-                        <td><?php print_r($row['firstname']) ." ".print_r($row['lastname']); ?></td>
+                        <td><?php print_r($row['firstname']) ." ". print_r($row['lastname']); ?></td>
                         <td>101</td>
                         <td><?php print_r($row['birthdate']); ?></td>
                         <td>$1.750</td>
@@ -121,6 +122,7 @@ if (isset($_POST["submit"])) {
     }else{
         echo "ID doesnt exist";
     }
+    return false;
 }
     ?>
         </section>
