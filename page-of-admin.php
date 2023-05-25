@@ -15,6 +15,7 @@ if(!isset($_SESSION['admin-name'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <!--this external file to the icon in page-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="CSS/page-of-admin.css">
@@ -63,7 +64,7 @@ if(!isset($_SESSION['admin-name'])){
             <form class="search-bar" action="page-of-admin.php#search-bar" method="post">
                 <label for="search">Patient search:</label>
                 <input type="text" name="search" placeholder="Search by Room or ID">
-                <button type="submit" name="submit">Search</button>
+                <button type="submit" name="search1">Search</button>
             </form>
         </div>
     <!-- add patient button -->
@@ -73,28 +74,22 @@ if(!isset($_SESSION['admin-name'])){
             <h2>Patient Information</h2>
             <?php
 
-
-
-if (isset($_POST["submit"])) {
-	$str = $_POST["search"];
-	$sql ="SELECT * FROM registration WHERE PID= '$str'";
-    $query=mysqli_query($con,$sql);
-
-
-	// $sth->setFetchMode(PDO:: FETCH_OBJ);
-	// $sth -> execute();
-
-	if(mysqli_num_rows($query) > 0)
-    {  $count="0";
-        while($row=mysqli_fetch_assoc($query)) 
-        { $count++;
         
-
+        
+        if (isset($_POST['search1'])) {
 
     
-	
+                  $st= $_POST['search'] ;
+                  $myquery=" SELECT * FROM registration JOIN accountant ON registration.PID=accountant.patient_id where PID like '%$st%'";
+                //   $myquery2=" SELECT * FROM accountant where patient_id like '%$st%'";
+                  $result= mysqli_query($con, $myquery);
+                  while ($row=mysqli_fetch_array($result) ) { 
+                    // code...
+
+                 	
 		?>
             <table>
+            
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -111,10 +106,9 @@ if (isset($_POST["submit"])) {
                         <td><?php print_r($row['firstname']) ." ". print_r($row['lastname']); ?></td>
                         <td>101</td>
                         <td><?php print_r($row['birthdate']); ?></td>
-                        <td>$1.750</td>
+                        <td><?php print_r($row['BillAmount']); ?></td>
                         <td><a href="patient-information.html">Click here</a></td>
                     </tr>
-                </tbody>
             </table>
             <?php
     }
@@ -122,35 +116,60 @@ if (isset($_POST["submit"])) {
     }else{
         echo "ID doesnt exist";
     }
-    return false;
-}
+    
+
     ?>
         </section>
     </div>
 
+    <?php
+    if(isset($_POST['add'])){
+        $PID = $_POST["PID"];
+        $Result = mysqli_query($con, "SELECT * FROM registration WHERE PID='$PID'" );
+        $row = mysqli_fetch_array($Result);
+        if(mysqli_num_rows($Result) > 0 ){
+            if($PID == $row['PID']){
+                $PID = mysqli_real_escape_string($con,$_POST['PID']);
+                $BillAmount = mysqli_real_escape_string($con,$_POST['BillAmount']);
+                $BillDescription = mysqli_real_escape_string($con,$_POST['BillDescription']);
+                $BillDate = mysqli_real_escape_string($con,$_POST['BillDate']);
+                $Query = mysqli_query($con, "INSERT INTO accountant VALUES('','$BillAmount','$BillDescription','$BillDate','$PID')");
+                echo 
+                     "<script> alert('Bill Added Successfully'); </script>";
+            }else{
+                echo 
+                "<script> alert('ID Doesnt Match'); </script>";
+              }
+            }
+        }
+    
+    
+    ?>
+
+
     <!-- Add bills -->
     <section class="add-bills">
         <h2>Add Bills</h2>
-        <form>
+        <form method="post">
             <fieldset>
                 <legend>Patient Information</legend>
-                <label for="id">ID:</label>
-                <input type="text" id="id" name="id">
+                <label for="PID">ID:</label>
+                <input type="text" id="PID" name="PID">
             </fieldset>
 
             <fieldset>
                 <legend>Bills Information</legend>
-                <label for="bill-amount">Bill Amount:</label>
-                <input type="number" id="bill-amount" name="bill-amount" required><br>
+                <label for="BillAmount">Bill Amount:</label>
+                <input type="number" id="BillAmount" name="BillAmount" required><br>
 
-                <label for="bill-description">Bill Description:</label>
-                <input type="text" id="bill-description" name="bill-description" required><br>
+                <label for="BillDescription">Bill Description:</label>
+                <input type="text" id="BillDescription" name="BillDescription" required><br>
 
-                <label for="bill-date">Bill Date:</label>
-                <input type="date" id="bill-date" name="bill-date" required>
+                <label for="BillDate">Bill Date:</label>
+                <input type="date" id="BillDate" name="BillDate" required>
             </fieldset>
 
-            <button type="submit">Add Medication Dose</button>
+            <button type="submit" name="add">Add Medication Dose</button>
         </form>
     </section>
 
@@ -158,10 +177,10 @@ if (isset($_POST["submit"])) {
     <div class="staff-background">
     <!-- staff search bar -->
     <div id="staff-search-bar">
-        <form class="staff-search-bar">
+        <form method="post" action="page-of-admin.php#staff-search-bar" class="staff-search-bar">
             <label for="search">Staff search:</label>
-            <input type="text" placeholder="Search by ID">
-            <button type="submit">Search</button>
+            <input type="text" name="Staff-S1" placeholder="Search by ID">
+            <button type="submit" name="Staff-S">Search</button>
         </form>
     </div>
 <!-- add staff button -->
@@ -169,6 +188,21 @@ if (isset($_POST["submit"])) {
 <!-- staff information -->
     <section class="staff-information">
         <h2>Staff Information</h2>
+
+
+        <?php
+         if (isset($_POST['Staff-S'])) {
+
+    
+            $st= $_POST['Staff-S1'] ;
+            $myquery=" SELECT * FROM staff  where PID like '%$st%'";
+          //   $myquery2=" SELECT * FROM accountant where patient_id like '%$st%'";
+            $result= mysqli_query($con, $myquery);
+            while ($row=mysqli_fetch_array($result) ) { 
+              // code...
+
+
+        ?>
         <table>
             <thead>
                 <tr>
@@ -182,31 +216,25 @@ if (isset($_POST["submit"])) {
             </thead>
             <tbody>
                 <tr>
-                    <td>1</td>
-                    <td>Ahmed Ali</td>
-                    <td>Male</td>
-                    <td>Doctor</td>
-                    <td>45</td>
+                    <td><?php print_r($row['PID']);  ?></td>
+                    <td><?php print_r($row['firstname']) . print_r($row['lastname']);  ?></td>
+                    <td><?php print_r($row['gender']);  ?></td>
+                    <td><?php print_r($row['department']);  ?></td>
+                    <td><?php print_r($row['birthdate']);  ?></td>
                     <td><a href="staff-information.html">Click here</a></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Mohamed Abdallah</td>
-                    <td>Male</td>
-                    <td>Admin</td>
-                    <td>30</td>
-                    <td><a href="patient-information.html">Click here</a></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Sara Ayman</td>
-                    <td>Female</td>
-                    <td>Nurse</td>
-                    <td>50</td>
-                    <td><a href="patient-information.html">Click here</a></td>
                 </tr>
             </tbody>
         </table>
+        <?php
+    }
+        
+    }
+    // else{
+    //     echo "ID doesnt exist";
+    // }
+    
+
+    ?>
     </section>
 </div>
 

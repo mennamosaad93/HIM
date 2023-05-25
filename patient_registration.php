@@ -17,7 +17,7 @@ if(isset($_POST['submit'])){
   }
   else{
     if($PID != $phone){
-      $query="INSERT INTO registration VALUES('','$PID','$firstname','$lastname','$phone','$gender','$birthdate','$email','$address')";
+      $query="INSERT INTO registration VALUES('$PID','$firstname','$lastname','$phone','$gender','$birthdate','$email','$address')";
       mysqli_query($con,$query);
       echo 
       "<script> alert('Rigstration success'); </script>";
