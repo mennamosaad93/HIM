@@ -80,7 +80,7 @@ if(!isset($_SESSION['admin-name'])){
 
     
                   $st= $_POST['search'] ;
-                  $myquery="SELECT * FROM patient, payment_details";
+                  $myquery="SELECT * FROM patient, payment_details WHERE PID like '$st'";
                 //   " SELECT * FROM patient  where PID like '%$st%'";
                 //   $myquery2=" SELECT * FROM accountant where patient_id like '%$st%'";
                   $result= mysqli_query($conn, $myquery);
@@ -219,7 +219,7 @@ if(!isset($_SESSION['admin-name'])){
 
     
             $st= $_POST['Staff-S1'] ;
-            $myquery=" SELECT * FROM employee  where PID like '%$st%'";
+            $myquery=" SELECT * FROM employee  where PID like '$st'";
           //   $myquery2=" SELECT * FROM accountant where patient_id like '%$st%'";
             $result= mysqli_query($conn, $myquery);
             while ($row=mysqli_fetch_array($result) ) { 
@@ -245,7 +245,24 @@ if(!isset($_SESSION['admin-name'])){
                     <td><?php print_r($row['gender']);  ?></td>
                     <td><?php print_r($row['department']);  ?></td>
                     <td><?php print_r($row['birthdate']);  ?></td>
-                    <td><a href="staff-information.php">Click here</a></td>
+                    <td><a href="staff-information.php">
+                    <?php
+                        $_SESSION['employee-firstname'] = $row['firstname'];
+                        $_SESSION['employee-lastname'] = $row['lastname'];
+                        $_SESSION['employee-gender'] = $row['gender'];
+                        $_SESSION['employee-age'] = $row['birthdate'];
+                        $_SESSION['employee-address'] = $row['address'];
+                        $_SESSION['employee-phone'] = $row['phone'];
+                        $_SESSION['employee-email'] = $row['emaill'];
+                        $_SESSION['employee-Dep'] = $row['department'];
+                        $_SESSION['employee-salary'] = $row['salary'];
+                        $_SESSION['employee-Qualifications'] = $row['qualifications'];
+                        
+                         
+                        
+                        
+                        ?>    
+                    Click here</a></td>
                 </tr>
             </tbody>
         </table>

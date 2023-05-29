@@ -1,3 +1,10 @@
+<?php
+include 'connect2.php';
+session_start();
+if(!isset($_SESSION['admin-name'])){
+    header('location: login.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,60 +21,56 @@
             <img src="CSS/Images/logo2 black.png" width="50px" height="50px">
             <a class="logo"  href="#">HIS</a>
             <ul>
-                <li><a href=".//t2.html">Home</a></li>
+                <li><a href="login.php">Home</a></li>
                 <li><a href="#">Print</a></li>
                 <li><a href="#">Report</a></li>
                 <li><a href="#">Contact</a></li>
-                <li><a href="#">Logout</a></li>
+                <li><a href="logout.php">Logout</a></li>
             </ul>
         </nav>
     <div class="internal">
         <div class="text">
             <main>
                 <section class="patient-info">
-                    <h2>Staff 101 Information</h2>
+                    <h2>Staff <?php echo $_SESSION['employee-firstname'] . $_SESSION['employee-lastname'] ; ?> Information</h2>
                     <table>
                         <tbody>
                             <tr>
                                 <th>Name:</th>
-                                <td>Ahmed Ali</td>
+                                <td><?php echo $_SESSION['employee-firstname'] . $_SESSION['employee-lastname'] ; ?></td>
                             </tr>
                             <tr>
                                 <th>Gender:</th>
-                                <td>Male</td>
+                                <td><?php echo $_SESSION['employee-gender']; ?></td>
                             </tr>
                             <tr>
                                 <th>Age:</th>
-                                <td>35</td>
+                                <td><?php echo $_SESSION['employee-age']; ?></td>
                             </tr>
                             <tr>
                                 <th>Address:</th>
-                                <td>43 Abu Elfida St, Zmalik, Egypt</td>
+                                <td><?php echo $_SESSION['employee-address']; ?></td>
                             </tr>
                             <tr>
                                 <th>Phone:</th>
-                                <td>0111445963077</td>
+                                <td><?php echo $_SESSION['employee-phone']; ?></td>
                             </tr>
                             <tr>
                                 <th>Email:</th>
-                                <td>Ahmed.Ali@example.com</td>
+                                <td><?php echo $_SESSION['employee-email']; ?></td>
                             </tr>
                             <tr>
                                 <th>Department:</th>
-                                <td>Surgery Doctor</td>
+                                <td><?php echo $_SESSION['employee-Dep']; ?></td>
                             </tr>
                             <tr>
                                 <th>Salary:</th>
-                                <td>40.000$</td>
+                                <td><?php echo $_SESSION['employee-salary']; ?></td>
                             </tr>
                             <tr>
                                 <th>Qualifications:</th>
                                 <td>
-                                    <ul>
-                                        <li>MBBCh - Bachelor of Medicine and Surgery</li>
-                                        <li>LRCS - Licentiate of the Royal College of Surgeons</li>
-                                        <li>MBBS - Bachelor of Medicine and Surgery</li>
-                                    </ul>
+                                <?php echo $_SESSION['employee-Qualifications']; ?>
                                 </td>
                             </tr>
                         </tbody>
