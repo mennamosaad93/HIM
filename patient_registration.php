@@ -1,26 +1,38 @@
 <?php
 include 'connection.php';
+include 'connect2.php';
 if(isset($_POST['submit'])){
-  $PID = mysqli_real_escape_string($con,$_POST['PID']);
-  $firstname = mysqli_real_escape_string($con,$_POST['firstname']);
-  $lastname = mysqli_real_escape_string($con,$_POST['lastname']);
-  $phone = mysqli_real_escape_string($con,$_POST['phone']);
-  $gender = mysqli_real_escape_string($con,$_POST['gender']);
-  $birthdate = mysqli_real_escape_string($con,$_POST['birthdate']);
-  $email = mysqli_real_escape_string($con,$_POST['email']);
-//   $password = mysqli_real_escape_string($con,$_POST['password']);
-  $address = mysqli_real_escape_string($con,$_POST['address']);
-  $q = mysqli_query($con, "SELECT * FROM registration WHERE PID ='$PID' OR email ='$email'");
+  $PID = mysqli_real_escape_string($conn,$_POST['PID']);
+  $firstname = mysqli_real_escape_string($conn,$_POST['firstname']);
+  $lastname = mysqli_real_escape_string($conn,$_POST['lastname']);
+  $phone = mysqli_real_escape_string($conn,$_POST['phone']);
+  $gender = mysqli_real_escape_string($conn,$_POST['gender']);
+  $age = mysqli_real_escape_string($conn,$_POST['age']);
+  $case = mysqli_real_escape_string($conn,$_POST['case']);
+  $meds_on = mysqli_real_escape_string($conn,$_POST['meds_on']);
+  $birthdate = mysqli_real_escape_string($conn,$_POST['birthdate']);
+  $email = mysqli_real_escape_string($conn,$_POST['email']);
+//   $password = mysqli_real_escape_string($conn,$_POST['password']);
+  $address = mysqli_real_escape_string($conn,$_POST['address']);
+  $room = mysqli_real_escape_string($conn,$_POST['room']);
+  $q = mysqli_query($conn, "SELECT * FROM  patient WHERE PID ='$PID' OR email ='$email'");
   if(mysqli_num_rows($q) > 0 ){
     echo 
     "<script> alert('ID of email has already taken'); </script>";
   }
+  // ('$PID','$firstname','$lastname','$phone','$gender','$birthdate','$email','$address')
   else{
     if($PID != $phone){
-      $query="INSERT INTO registration VALUES('$PID','$firstname','$lastname','$phone','$gender','$birthdate','$email','$address')";
-      mysqli_query($con,$query);
-      echo 
-      "<script> alert('Rigstration success'); </script>";
+      $query="INSERT INTO patient VALUES('$PID','$firstname','$lastname','$phone','$age','$gender','$birthdate','$email','$case','$meds_on','$room','$address')";
+      mysqli_query($conn,$query);
+      // if($query > 0){
+      //   $query2="INSERT INTO him.registration VALUES('$PID','$firstname' .'$lastname','$phone','$gender','$birthdate','$email','$address')";
+       
+      //   mysqli_query($conn,$query2); 
+      // }
+      
+      echo
+      "<script> alert('Registration success'); </script>";
     }
     else{
       echo 
@@ -66,8 +78,14 @@ if(isset($_POST['submit'])){
 			<label for="birthdate">Birthdate:</label>
 			<input type="date" id="birthdate" name="birthdate" required>
 
+            <label for="age">Age:</label>
+			<input type="text" id="age" name="age" required>
+
 			<label for="email">email:</label>
 			<input type="email" id="email" name="email" required>
+
+      <label for="room">Room:</label>
+			<input type="text" id="room" name="room" required>
 
 			<!-- <label for="password">password:</label>
 			<input type="password" id="password" name="password" required> -->
@@ -76,7 +94,10 @@ if(isset($_POST['submit'])){
 			<textarea id="address" name="address" required></textarea>
 			
 			<label for="medical-history">Medical History:</label>
-			<textarea id="medical-history" name="medical-history" required></textarea>
+            <label for="case">What is your complain? Any chronic diseases?</label>
+            <textarea id="case" name="case" required></textarea>
+            <label for="meds_on">Any chronic meds? </label>
+            <textarea id="meds_on" name="meds_on" required></textarea>
 
 			<input type="submit" name="submit" value="Register">
               

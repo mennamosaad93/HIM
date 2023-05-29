@@ -1,10 +1,10 @@
 <?php
-include 'connection.php';
+include 'connect2.php';
 session_start();
     if(isset($_POST['submit'])){
     $email = $_POST["email"];
     $password = $_POST["password"];
-    $Result = mysqli_query($con, "SELECT * FROM staff WHERE emaill='$email'" );
+    $Result = mysqli_query($conn, "SELECT * FROM employee WHERE emaill='$email'" );
     $row = mysqli_fetch_array($Result);
     if(mysqli_num_rows($Result) > 0 ){
         if($password == $row["passwords"])

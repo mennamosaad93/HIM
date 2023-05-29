@@ -1,13 +1,13 @@
 <?php
-include 'connection.php';
+include 'connect2.php';
 session_start();
 if(!isset($_SESSION['admin-name'])){
     header('location: login.php');
 }
-
-
-
 ?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -80,9 +80,9 @@ if(!isset($_SESSION['admin-name'])){
 
     
                   $st= $_POST['search'] ;
-                  $myquery=" SELECT * FROM registration JOIN accountant ON registration.PID=accountant.patient_id where PID like '%$st%'";
+                  $myquery=" SELECT * FROM patient where PID like '%$st%'";
                 //   $myquery2=" SELECT * FROM accountant where patient_id like '%$st%'";
-                  $result= mysqli_query($con, $myquery);
+                  $result= mysqli_query($conn, $myquery);
                   while ($row=mysqli_fetch_array($result) ) { 
                     // code...
 
@@ -104,7 +104,7 @@ if(!isset($_SESSION['admin-name'])){
                     <tr>
                         <td><?php print_r($row['PID']);  ?></td>
                         <td><?php print_r($row['firstname']) ." ". print_r($row['lastname']); ?></td>
-                        <td>101</td>
+                        <td><?php print_r($row['room']); ?></td>
                         <td><?php print_r($row['birthdate']); ?></td>
                         <td><?php print_r($row['BillAmount']); ?></td>
                         <td><a href="patient-information.html">Click here</a></td>
@@ -125,15 +125,20 @@ if(!isset($_SESSION['admin-name'])){
     <?php
     if(isset($_POST['add'])){
         $PID = $_POST["PID"];
-        $Result = mysqli_query($con, "SELECT * FROM registration WHERE PID='$PID'" );
+        $acc_id = $_POST["acc_id"];
+        $Result = mysqli_query($conn, "SELECT * FROM patient  WHERE PID='$PID'" );
+        $Result1 = mysqli_query($conn, "SELECT * FROM accountant  WHERE ID='$acc_id'");
         $row = mysqli_fetch_array($Result);
         if(mysqli_num_rows($Result) > 0 ){
+            $row1 = mysqli_fetch_array($Result1);
+            if(mysqli_num_rows($Result1) > 0){
             if($PID == $row['PID']){
-                $PID = mysqli_real_escape_string($con,$_POST['PID']);
-                $BillAmount = mysqli_real_escape_string($con,$_POST['BillAmount']);
-                $BillDescription = mysqli_real_escape_string($con,$_POST['BillDescription']);
-                $BillDate = mysqli_real_escape_string($con,$_POST['BillDate']);
-                $Query = mysqli_query($con, "INSERT INTO accountant VALUES('','$BillAmount','$BillDescription','$BillDate','$PID')");
+                $PID = mysqli_real_escape_string($conn,$_POST['PID']);
+                $acc_id = mysqli_real_escape_string($conn,$_POST['acc_id']);
+                $BillAmount = mysqli_real_escape_string($conn,$_POST['BillAmount']);
+                $BillDescription = mysqli_real_escape_string($conn,$_POST['BillDescription']);
+                $BillDate = mysqli_real_escape_string($conn,$_POST['BillDate']);
+                $Query = mysqli_query($conn, "INSERT INTO payment_details VALUES('','$BillAmount','$PID','$acc_id','$BillDescription','$BillDate')");
                 echo 
                      "<script> alert('Bill Added Successfully'); </script>";
             }else{
@@ -143,7 +148,7 @@ if(!isset($_SESSION['admin-name'])){
             }
         }
     
-    
+    }
     ?>
 
 
@@ -155,6 +160,9 @@ if(!isset($_SESSION['admin-name'])){
                 <legend>Patient Information</legend>
                 <label for="PID">ID:</label>
                 <input type="text" id="PID" name="PID">
+                <br>
+                <label for="acc_id">acc_id:</label>
+                <input type="text" id="acc_id" name="acc_id">
             </fieldset>
 
             <fieldset>
@@ -195,9 +203,9 @@ if(!isset($_SESSION['admin-name'])){
 
     
             $st= $_POST['Staff-S1'] ;
-            $myquery=" SELECT * FROM staff  where PID like '%$st%'";
+            $myquery=" SELECT * FROM employee  where PID like '%$st%'";
           //   $myquery2=" SELECT * FROM accountant where patient_id like '%$st%'";
-            $result= mysqli_query($con, $myquery);
+            $result= mysqli_query($conn, $myquery);
             while ($row=mysqli_fetch_array($result) ) { 
               // code...
 

@@ -1,5 +1,5 @@
 <?php
-include 'connection.php';
+include 'connect2.php';
 session_start();
 if(!isset($_SESSION['admin-name'])){
     header('location: login.php');
