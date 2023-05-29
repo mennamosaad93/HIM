@@ -108,7 +108,22 @@ if(!isset($_SESSION['admin-name'])){
                         <td><?php print_r($row['room']); ?></td>
                         <td><?php print_r($row['birthdate']); ?></td>
                         <td><?php print_r($row['BillAmount']); ?></td>
-                        <td><a href="patient-information.html">Click here</a></td>
+                        <td><a href="patient-information.php">
+                            <?php
+                        $_SESSION['patient-case'] = $row['case'];
+                        $_SESSION['patient-name'] = $row['firstname'];
+                        $_SESSION['patient-gender'] = $row['gender'];
+                        $_SESSION['patient-age'] = $row['age'];
+                        $_SESSION['patient-address'] = $row['address'];
+                        $_SESSION['patient-phone'] = $row['phone'];
+                        $_SESSION['patient-email'] = $row['email'];
+                        $_SESSION['patient-Bill'] = $row['BillAmount'];
+                        
+                         
+                        
+                        
+                        ?>
+                        Click here</a></td>
                     </tr>
             </table>
             <?php
@@ -230,7 +245,7 @@ if(!isset($_SESSION['admin-name'])){
                     <td><?php print_r($row['gender']);  ?></td>
                     <td><?php print_r($row['department']);  ?></td>
                     <td><?php print_r($row['birthdate']);  ?></td>
-                    <td><a href="staff-information.html">Click here</a></td>
+                    <td><a href="staff-information.php">Click here</a></td>
                 </tr>
             </tbody>
         </table>
