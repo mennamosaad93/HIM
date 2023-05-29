@@ -80,7 +80,8 @@ if(!isset($_SESSION['admin-name'])){
 
     
                   $st= $_POST['search'] ;
-                  $myquery=" SELECT * FROM patient where PID like '%$st%'";
+                  $myquery="SELECT * FROM patient, payment_details";
+                //   " SELECT * FROM patient  where PID like '%$st%'";
                 //   $myquery2=" SELECT * FROM accountant where patient_id like '%$st%'";
                   $result= mysqli_query($conn, $myquery);
                   while ($row=mysqli_fetch_array($result) ) { 
@@ -103,7 +104,7 @@ if(!isset($_SESSION['admin-name'])){
                 <tbody>
                     <tr>
                         <td><?php print_r($row['PID']);  ?></td>
-                        <td><?php print_r($row['firstname']) ." ". print_r($row['lastname']); ?></td>
+                        <td><?php print_r($row['firstname']) ."". print_r($row['lastname']); ?></td>
                         <td><?php print_r($row['room']); ?></td>
                         <td><?php print_r($row['birthdate']); ?></td>
                         <td><?php print_r($row['BillAmount']); ?></td>
