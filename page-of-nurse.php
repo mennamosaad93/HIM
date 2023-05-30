@@ -1,7 +1,7 @@
 <?php
 include 'connect2.php';
 session_start();
-if(!isset($_SESSION['admin-name'])){
+if (!isset($_SESSION['admin-name'])) {
     header('location: login.php');
 }
 ?>
@@ -14,7 +14,7 @@ if(!isset($_SESSION['admin-name'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--this external file to the icon in page-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="CSS/page-of-nurse.css">
+    <link rel="stylesheet" href="css/page-of-nurse.css">
     <title>Hospital Information System</title>
 </head>
 
@@ -35,9 +35,9 @@ if(!isset($_SESSION['admin-name'])){
     <!-- the main -->
     <section class="main">
         <div>
-            <h2>Hello, Nurse:  <strong><?php echo $_SESSION['admin-name']; ?></strong> <br><span>Hospital Information System</span></h2>
+            <h2>Hello, Nurse: <strong><?php echo $_SESSION['admin-name']; ?></strong> <br><span>Hospital Information System</span></h2>
             <h3>This system was created to help hospitals manage their internal affairs and assist hospital staff</h3>
-            <a href="#schedule" class="main-btn">Manage  my work</a>
+            <a href="#schedule" class="main-btn">Manage my work</a>
             <div class="social-icons">
                 <a href="#"><i class="fab fa-linkedin"></i></a>
                 <a href="#"><i class="fab fa-twitter"></i></a>
@@ -55,111 +55,126 @@ if(!isset($_SESSION['admin-name'])){
 
     <!-- patient search background -->
     <div class="patient-background">
-    <!-- search bar -->
+        <!-- search bar -->
         <div id="search-bar">
-            <form class="search-bar">
+            <form class="search-bar" action="page-of-admin.php#search-bar" method="post">
                 <label for="search">Patient search:</label>
-                <input type="text" placeholder="Search by Room or ID">
-                <button type="submit">Search</button>
+                <input type="text" name="search" placeholder="Search by Room or ID">
+                <button type="submit" name="search1">Search</button>
             </form>
         </div>
 
-    <!-- patient information table -->
+        <!-- patient information table -->
         <section class="patient-information">
             <h2>Patient Information</h2>
+            <?php
+
+        
+        
+        if (isset($_POST['search1'])) {
+
+    
+                  $st= $_POST['search'] ;
+                  $myquery="SELECT * FROM patient, payment_details WHERE PID like '$st'";
+                //   " SELECT * FROM patient  where PID like '%$st%'";
+                //   $myquery2=" SELECT * FROM accountant where patient_id like '%$st%'";
+                  $result= mysqli_query($conn, $myquery);
+                  while ($row=mysqli_fetch_array($result) ) { 
+                    // code...
+
+                 	
+		?>
             <table>
+            
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
                         <th>Room</th>
-                        <th>Age</th>
-                        <th>Diseases</th>
-                        <th>Medications</th>
-                        <th>Lap result</th>
+                        <th>Birthdate</th>
+                        <th>Patient bill</th>
                         <th>More Information</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>1</td>
-                        <td>Ahmed Ali</td>
-                        <td>101</td>
-                        <td>45</td>
-                        <td>Diabetes-blood pressure</td>
-                        <td>Aspirin</td>
-                        <td><a href="lab-results.html">Click here</a></td>
-                        <td><a href="patient-information.html">Click here</a></td>
+                        <td><?php print_r($row['PID']);  ?></td>
+                        <td><?php print_r($row['firstname']) ."". print_r($row['lastname']); ?></td>
+                        <td><?php print_r($row['room']); ?></td>
+                        <td><?php print_r($row['birthdate']); ?></td>
+                        <td><?php print_r($row['BillAmount']); ?></td>
+                        <td><a href="patient-information.php">
+                            <?php
+                        $_SESSION['patient-case'] = $row['case'];
+                        $_SESSION['patient-name'] = $row['firstname'];
+                        $_SESSION['patient-gender'] = $row['gender'];
+                        $_SESSION['patient-age'] = $row['age'];
+                        $_SESSION['patient-address'] = $row['address'];
+                        $_SESSION['patient-phone'] = $row['phone'];
+                        $_SESSION['patient-email'] = $row['email'];
+                        $_SESSION['patient-Bill'] = $row['BillAmount'];
+                        
+                         
+                        
+                        
+                        ?>
+                        Click here</a></td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Mohamed Abdallah</td>
-                        <td>102</td>
-                        <td>30</td>
-                        <td>Diabetes-stomach ulcer</td>
-                        <td>Insulin</td>
-                        <td><a href="lab-results.html">Click here</a></td>
-                        <td><a href="patient-information.html">Click here</a></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Sara Ayman</td>
-                        <td>103</td>
-                        <td>50</td>
-                        <td>virus C-blood cancer</td>
-                        <td>Chemotherapy</td>
-                        <td><a href="lab-results.html">Click here</a></td>
-                        <td><a href="patient-information.html">Click here</a></td>
-                    </tr>
-                </tbody>
             </table>
+            <?php
+    }
+        
+    }else{
+        echo "ID doesnt exist";
+    }
+    
+
+    ?>
         </section>
     </div>
+
+    <?php 
+        if(isset($_POST['ADD'])){
+            $PID = $_POST["PID"];
+            $Result = mysqli_query($conn, "SELECT * FROM patient WHERE PID='$PID'" );
+            // $Result1 = mysqli_query($conn, "SELECT * FROM nurse  WHERE nurse_id='$nurse_id'");
+            $row = mysqli_fetch_array($Result);
+            if(mysqli_num_rows($Result) > 0 ){
+                // $row1 = mysqli_fetch_array($Result1);
+                // if(mysqli_num_rows($Result1) > 0){
+                if($PID == $row['PID']){
+                    $Notes = mysqli_real_escape_string($conn,$_POST['Notes']);
+                    $Query = mysqli_query($conn, "INSERT INTO nursenotes VALUES('','$PID','$Notes')");
+                    echo 
+                         "<script> alert('Note Added Successfully'); </script>";
+                }else{
+                    echo 
+                    "<script> alert('ID Doesnt Match'); </script>";
+                  }
+                }
+            }
+        
+        // }
+    ?>
 
 
     <!-- Add notes -->
     <section class="add-notes">
         <h2>Add notes to the patient</h2>
-        <form>
+        <form method="post">
             <fieldset>
                 <legend>Patient Information</legend>
-                <label for="id">ID:</label>
-                <input type="text" id="id" name="id">
+                <label for="PID">ID:</label>
+                <input type="text" id="PID" name="PID">
             </fieldset>
 
             <fieldset>
                 <legend>Add Notes</legend>
-                <label for="add-notes">The Notes:</label>
-                <input type="text" id="add-notes" name="add-notes" required><br>
+                <label for="Notes">The Notes:</label>
+                <input type="text" id="Notes" name="Notes" required><br>
             </fieldset>
 
-            <button type="submit">Add notes</button>
-        </form>
-    </section>
-
-    <!-- Add bills -->
-    <section class="add-bills">
-        <h2>Add Bills</h2>
-        <form>
-            <fieldset>
-                <legend>Patient Information</legend>
-                <label for="id">ID:</label>
-                <input type="text" id="id" name="id">
-            </fieldset>
-
-            <fieldset>
-                <legend>Bills Information</legend>
-                <label for="bill-amount">Bill Amount:</label>
-                <input type="number" id="bill-amount" name="bill-amount" required><br>
-
-                <label for="bill-description">Bill Description:</label>
-                <input type="text" id="bill-description" name="bill-description" required><br>
-
-                <label for="bill-date">Bill Date:</label>
-                <input type="date" id="bill-date" name="bill-date" required><br>
-            </fieldset>
-
-            <button type="submit">Add notes</button>
+            <button type="submit" name="ADD">Add notes</button>
         </form>
     </section>
 
@@ -168,66 +183,84 @@ if(!isset($_SESSION['admin-name'])){
         <div class="content">
             <section class="schedule-management">
                 <h2>Manage Nurse's Schedule</h2>
-                <form>
+                <form method="post" action="page-of-nurse.php#schedule">
                     <fieldset>
+                        <legend>Nurse Id:</legend>
+                        <input type="text" id="NurseId" name="NurseId" required><br>
+
+
                         <legend>Set Your Availability</legend>
-                        <label for="start-date">Start Date:</label>
-                        <input type="date" id="start-date" name="start-date" required><br>
-    
-                        <label for="end-date">End Date:</label>
-                        <input type="date" id="end-date" name="end-date" required><br>
-    
-                        <label for="start-time">Start Time:</label>
-                        <input type="time" id="start-time" name="start-time" required><br>
-    
-                        <label for="end-time">End Time:</label>
-                        <input type="time" id="end-time" name="end-time" required><br>
+                        <label for="StartDate">Start Date:</label>
+                        <input type="date" id="StartDate" name="StartDate" required><br>
+
+                        <label for="EndDate">End Date:</label>
+                        <input type="date" id="EndDate" name="EndDate" required><br>
+
+                        <label for="StartTime">Start Time:</label>
+                        <input type="time" id="StartTime" name="StartTime" required><br>
+
+                        <label for="EndTime">End Time:</label>
+                        <input type="time" id="EndTime" name="EndTime" required><br>
                     </fieldset>
-    
-                    <button type="submit">Set Availability</button>
+
+                    <button type="submit" name="SetTime">Set Availability</button>
                 </form>
                 <hr>
-    <!-- set nurse schedule -->
+                <!-- set nurse schedule -->
                 <h3>Your Schedule</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Start Time</th>
-                            <th>End Time</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>May 10, 2023</td>
-                            <td>10:00am</td>
-                            <td>11:00am</td>
-                            <td>
-                                <button>Edit</button>
-                                <button>Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>May 11, 2023</td>
-                            <td>2:00pm</td>
-                            <td>3:00pm</td>
-                            <td>
-                                <button>Edit</button>
-                                <button>Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>May 12, 2023</td>
-                            <td>9:00am</td>
-                            <td>10:00am</td>
-                            <td>
-                                <button>Edit</button>
-                                <button>Delete</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <?php
+                    if (isset($_SESSION['status'])){
+
+                        echo "<h4>".$_SESSION['status']."</h4>";
+                        unset($_SESSION['status']);
+
+                    }
+
+
+                ?>
+                <form method="post" action="delete.php">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>
+                                    <button type="submit" name="delete">Delete</button>
+                                </th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Start Time</th>
+                                <th>End Time</th>
+                            </tr>
+                        </thead>
+                        <?php
+
+                        $query2 = "SELECT * FROM clinic_schedule";
+                        $data = mysqli_query($conn, $query2);
+                        $results = mysqli_num_rows($data);
+                        if ($results) {
+                            // while ($row = mysqli_fetch_array($data)) {
+                            //     $id=$row['Sch_ID'];
+                            foreach ($data as $row) {
+
+
+
+
+                        ?>
+
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" name="stud_delete_id[]" value="<?= $row['Sch_ID']; ?>">
+                                        </td>
+                                        <td><?= $row['start_date']; ?></td>
+                                        <td><?= $row['end_date']; ?></td>
+                                        <td><?= $row['start_time']; ?></td>
+                                        <td><?= $row['end_time']; ?></td>
+                                    </tr>
+                                </tbody>
+                        <?php }
+                        } ?>
+                    </table>
+                </form>
             </section>
 
         </div>
@@ -270,4 +303,5 @@ if(!isset($_SESSION['admin-name'])){
     </footer>
 
 </body>
+
 </html>

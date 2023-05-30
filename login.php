@@ -15,11 +15,11 @@ session_start();
                 $_SESSION['admin-name'] = $row['firstname'];
                 header("location: page-of-admin.php");
 
-            }elseif($row['department'] == 'Doctor'){
+            }elseif($row['department'] == 'doctor'){
                 $_SESSION['admin-name'] = $row['firstname'];
                 header("location: page-of-doctor.php");
 
-            }elseif($row['department'] == 'Nurse'){
+            }elseif($row['department'] == 'nurse'){
                 $_SESSION['admin-name'] = $row['firstname'];
                 header("location: page-of-nurse.php");
 

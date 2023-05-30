@@ -468,16 +468,21 @@ form label {
     width: 100%;
 }
 
-  .schedule-management table th,
-  .schedule-management table td {
+  .schedule-management table th{
     border: 1px solid #ccc;
     padding: 10px;
-    text-align: left;
+    text-align: center;
+}
+.schedule-management table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
 }
 
   .schedule-management table th {
     background-color: #cbf3f0;
     font-weight: bold;
+    text-align: center;
 }
 
   .schedule-management td {
