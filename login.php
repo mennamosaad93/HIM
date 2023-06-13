@@ -47,23 +47,28 @@ session_start();
 
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Hospital Information System- Login</title>
-	<link rel="stylesheet" type="text/css" href="css/login.css">
+    <title>Hospital Information System- Login</title>
+    <link rel="stylesheet" type="text/css" href="css/login.css">
 </head>
+
 <body>
-	<div class="login-box">
-        <div class="logo"><img src="css/images/logo2.png" class="avatar" width="100" height="100" ></div>
-		<div class="hl"><h1>Hospital Information System</h1></div>
+    <div class="login-box">
+        <div class="logo"><img src="css/images/logo2.png" class="avatar" width="100" height="100"></div>
+        <div class="hl">
+            <h1>Hospital Information System</h1>
+        </div>
         <h2>Login</h2>
-		<form action="login.php" method="POST">
-			<p>email</p>
-			<input type="text" name="email" placeholder="Enter your email" required>
-			<p>Password</p>
-			<input type="password" name="password" placeholder="Enter password" required>
-			<input type="submit" name="submit" value="Login">
-		</form>
-		<a href="Forgot_Password.html">Forgot Password?</a> | <a href="staff_registration.html">Create an Account</a>
-	</div>
+        <form action="login.php" method="POST">
+            <p>email</p>
+            <input type="text" name="email" placeholder="Enter your email" required>
+            <p>Password</p>
+            <input type="password" name="password" placeholder="Enter password" required>
+            <input type="submit" name="submit" value="Login">
+        </form>
+        <a href="Forgot_Password.php">Forgot Password?</a> | <a href="staff_registration.php">Create an Account</a>
+    </div>
 </body>
+
 </html>
