@@ -1,7 +1,7 @@
 <?php
 include 'connect2.php';
 session_start();
-if(!isset($_SESSION['admin-name'])){
+if (!isset($_SESSION['admin-name'])) {
     header('location: login.php');
 }
 ?>
@@ -35,7 +35,8 @@ if(!isset($_SESSION['admin-name'])){
     <!-- the main -->
     <section class="main">
         <div>
-            <h2>Hello, Doctor: <strong><?php echo $_SESSION['admin-name']; ?></strong> <br><span>Hospital Information System</span></h2>
+            <h2>Hello, Doctor: <strong><?php echo $_SESSION['admin-name']; ?></strong> <br><span>Hospital Information
+                    System</span></h2>
             <h3>This system was created to help hospitals manage their internal affairs and assist hospital staff</h3>
             <a href="#schedule" class="main-btn">Manage my work</a>
             <div class="social-icons">
@@ -56,124 +57,197 @@ if(!isset($_SESSION['admin-name'])){
     <!-- patient search background -->
     <div class="patient-background">
 
-    <!-- search bar -->
+        <!-- search bar -->
         <div id="search-bar">
-            <form class="search-bar">
+            <form class="search-bar" action="page-of-doctor.php#search-bar" method="post">
                 <label for="search">Patient search:</label>
-                <input type="text" placeholder="Search by Room or ID">
-                <button type="submit">Search</button>
+                <input type="text" name="search" placeholder="Search by Room or ID">
+                <button type="submit" name="search1">Search</button>
             </form>
         </div>
 
-    <!-- patient information table -->
+        <!-- patient information table -->
         <section class="patient-information">
             <h2>Patient Information</h2>
+            <?php
+
+
+
+            if (isset($_POST['search1'])) {
+
+
+                $st = $_POST['search'];
+                $myquery = "SELECT patient.* , payment_details.BillAmount FROM patient INNER JOIN payment_details  on patient.PID=payment_details.p_id WHERE PID like '$st'";
+                //   " SELECT * FROM patient  where PID like '%$st%'";
+                //   $myquery2=" SELECT * FROM accountant where patient_id like '%$st%'";
+                $result = mysqli_query($conn, $myquery);
+                while ($row = mysqli_fetch_array($result)) {
+                    // code...
+
+
+            ?>
             <table>
+
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
                         <th>Room</th>
-                        <th>Age</th>
-                        <th>Diseases</th>
-                        <th>Medications</th>
-                        <th>Lap result</th>
+                        <th>Birthdate</th>
+                        <th>Patient bill</th>
                         <th>More Information</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>1</td>
-                        <td>Ahmed Ali</td>
-                        <td>101</td>
-                        <td>45</td>
-                        <td>Diabetes-blood pressure</td>
-                        <td>Aspirin</td>
-                        <td><a href="lab-results.html">Click here</a></td>
-                        <td><a href="patient-information.html">Click here</a></td>
+                        <td><?php print_r($row['PID']);  ?></td>
+                        <td><?php print_r($row['firstname']) . "" . print_r($row['lastname']); ?></td>
+                        <td><?php print_r($row['room']); ?></td>
+                        <td><?php print_r($row['birthdate']); ?></td>
+                        <td><?php print_r($row['BillAmount']); ?></td>
+                        <td><a href="patient-information.php">
+                                <?php
+                                        $_SESSION['patient-case'] = $row['case'];
+                                        $_SESSION['patient-name'] = $row['firstname'];
+                                        $_SESSION['patient-gender'] = $row['gender'];
+                                        $_SESSION['patient-age'] = $row['age'];
+                                        $_SESSION['patient-address'] = $row['address'];
+                                        $_SESSION['patient-phone'] = $row['phone'];
+                                        $_SESSION['patient-email'] = $row['email'];
+                                        $_SESSION['patient-Bill'] = $row['BillAmount'];
+
+
+
+
+                                        ?>
+                                Click here</a></td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Mohamed Abdallah</td>
-                        <td>102</td>
-                        <td>30</td>
-                        <td>Diabetes-stomach ulcer</td>
-                        <td>Insulin</td>
-                        <td><a href="lab-results.html">Click here</a></td>
-                        <td><a href="patient-information.html">Click here</a></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Sara Ayman</td>
-                        <td>103</td>
-                        <td>50</td>
-                        <td>virus C-blood cancer</td>
-                        <td>Chemotherapy</td>
-                        <td><a href="lab-results.html">Click here</a></td>
-                        <td><a href="patient-information.html">Click here</a></td>
-                    </tr>
-                </tbody>
             </table>
+            <?php
+                }
+            }
+
+
+            ?>
         </section>
     </div>
 
+    <?php
+    if (isset($_POST['submit'])) {
+        $PID = $_POST["PID"];
+        $Result = mysqli_query($conn, "SELECT * FROM patient  WHERE PID='$PID'");
+        $Result1 = mysqli_query($conn, "SELECT * FROM medicine");
+        $row = mysqli_fetch_array($Result);
+        if (mysqli_num_rows($Result) > 0) {
+            $row1 = mysqli_fetch_array($Result1);
+            if (mysqli_num_rows($Result1) > 0) {
+                if ($PID == $row['PID']) {
+                    $PIS = mysqli_real_escape_string($conn, $_POST['PID']);
+                    $MedicationName = mysqli_real_escape_string($conn, $_POST['MedicationName']);
+                    $Frequency = mysqli_real_escape_string($conn, $_POST['Frequency']);
+                    $Duration = mysqli_real_escape_string($conn, $_POST['Duration']);
+                    $dosage = mysqli_real_escape_string($conn, $_POST['dosage']);
+                    $price = mysqli_real_escape_string($conn, $_POST['price']);
+                    $Querys = mysqli_query($conn, "INSERT INTO medicine VALUES('','$MedicationName','$Frequency','$Duration','$dosage','$price','$PID')");
+                    echo
+                    "<script> alert('MED Added Successfully'); </script>";
+                }
+            }
+        } else {
+            echo
+            "<script> alert('ID Doesnt Match'); </script>";
+        }
+    }
+    ?>
     <!-- Add medications -->
     <section class="add-medication-doses">
         <h2>Add Medication Doses</h2>
-        <form>
+        <form action="page-of-doctor.php" method="post">
             <fieldset>
                 <legend>Patient Information</legend>
-                <label for="id">ID:</label>
-                <input type="text" id="id" name="id">
+                <label for="PID">ID:</label>
+                <input type="text" id="PID" name="PID">
             </fieldset>
 
             <fieldset>
-                <legend>Medication Information</legend>
-                <label for="medication-name">Medication Name:</label>
-                <input type="text" id="medication-name" name="medication-name" ><br>
+                <legend>MedicationName</legend>
+                <label for="MedicationName">MedicationName:</label>
+                <input type="text" id="MedicationName" name="MedicationName" required><br>
 
-                <label for="dosage">Dosage:</label>
-                <input type="text" id="dosage" name="dosage" ><br>
+                <label for="Frequency">Frequency:</label>
+                <input type="text" id="Frequency" name="Frequency" required><br>
 
-                <label for="frequency">Frequency:</label>
-                <input type="text" id="frequency" name="frequency" ><br>
+                <label for="Duration">Duration:</label>
+                <input type="text" id="Duration" name="Duration" required><br>
 
-                <label for="duration">Duration:</label>
-                <input type="text" id="duration" name="duration" ><br>
+                <label for="dosage">dosage:</label>
+                <input type="text" id="dosage" name="dosage" required><br>
 
-                <label class="notes" for="note">Add Notes:</label>
-                <input type="text" id="note" name="note" ><br>
+                <label for="price">price:</label>
+                <input type="text" id="price" name="price" required><br>
+
+
             </fieldset>
+            <button type="submit" name="submit" id="submit">Add Med</button>
 
-            <button type="submit">Add Medication Dose</button>
         </form>
     </section>
-
+    <?php
+    if (isset($_POST['add'])) {
+        $PID = $_POST["PID"];
+        $acc_id = $_POST["acc_id"];
+        $Result = mysqli_query($conn, "SELECT * FROM patient  WHERE PID='$PID'");
+        $Result1 = mysqli_query($conn, "SELECT * FROM accountant  WHERE ID='$acc_id'");
+        $row = mysqli_fetch_array($Result);
+        if (mysqli_num_rows($Result) > 0) {
+            $row1 = mysqli_fetch_array($Result1);
+            if (mysqli_num_rows($Result1) > 0) {
+                if ($PID == $row['PID']) {
+                    $PID = mysqli_real_escape_string($conn, $_POST['PID']);
+                    $acc_id = mysqli_real_escape_string($conn, $_POST['acc_id']);
+                    $BillAmount = mysqli_real_escape_string($conn, $_POST['BillAmount']);
+                    $BillDescription = mysqli_real_escape_string($conn, $_POST['BillDescription']);
+                    $BillDate = mysqli_real_escape_string($conn, $_POST['BillDate']);
+                    $Query = mysqli_query($conn, "INSERT INTO payment_details VALUES('','$BillAmount','$PID','$acc_id','$BillDescription','$BillDate')");
+                    echo
+                    "<script> alert('Bill Added Successfully'); </script>";
+                } else {
+                    echo
+                    "<script> alert('ID Doesnt Match'); </script>";
+                }
+            }
+        }
+    }
+    ?>
     <!-- Add bills -->
     <section class="add-bills">
         <h2>Add Bills</h2>
-        <form>
+        <form method="post">
             <fieldset>
                 <legend>Patient Information</legend>
-                <label for="id">ID:</label>
-                <input type="text" id="id" name="id">
+                <label for="PID">ID:</label>
+                <input type="text" id="PID" name="PID">
+                <br>
+                <label for="acc_id">acc_id:</label>
+                <input type="text" id="acc_id" name="acc_id">
             </fieldset>
 
             <fieldset>
                 <legend>Bills Information</legend>
-                <label for="bill-amount">Bill Amount:</label>
-                <input type="text" id="bill-amount" name="bill-amount" required><br>
+                <label for="BillAmount">Bill Amount:</label>
+                <input type="number" id="BillAmount" name="BillAmount" required><br>
 
-                <label for="bill-description">Bill Description:</label>
-                <input type="text" id="bill-description" name="bill-description" required><br>
+                <label for="BillDescription">Bill Description:</label>
+                <input type="text" id="BillDescription" name="BillDescription" required><br>
 
-                <label for="bill-date">Bill Date:</label>
-                <input type="date" id="bill-date" name="bill-date" required><br>
+                <label for="BillDate">Bill Date:</label>
+                <input type="date" id="BillDate" name="BillDate" required>
             </fieldset>
 
-            <button type="submit">Add Medication Dose</button>
+            <button type="submit" name="add">Add Bill</button>
         </form>
     </section>
+
 
     <!-- The set schedule -->
     <section class="schedule" id="schedule">
@@ -185,21 +259,21 @@ if(!isset($_SESSION['admin-name'])){
                         <legend>Set Your Availability</legend>
                         <label for="start-date">Start Date:</label>
                         <input type="date" id="start-date" name="start-date" required><br>
-    
+
                         <label for="end-date">End Date:</label>
                         <input type="date" id="end-date" name="end-date" required><br>
-    
+
                         <label for="start-time">Start Time:</label>
                         <input type="time" id="start-time" name="start-time" required><br>
-    
+
                         <label for="end-time">End Time:</label>
                         <input type="time" id="end-time" name="end-time" required><br>
                     </fieldset>
-    
+
                     <button type="submit">Set Availability</button>
                 </form>
                 <hr>
-    <!-- the table schedule -->
+                <!-- the table schedule -->
                 <h3>Your Schedule</h3>
                 <table>
                     <thead>
@@ -241,7 +315,7 @@ if(!isset($_SESSION['admin-name'])){
                     </tbody>
                 </table>
             </section>
-            
+
         </div>
     </section>
 
@@ -282,4 +356,5 @@ if(!isset($_SESSION['admin-name'])){
     </footer>
 
 </body>
+
 </html>

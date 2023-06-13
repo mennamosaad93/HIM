@@ -82,7 +82,7 @@ if (!isset($_SESSION['admin-name'])) {
 
 
                 $st = $_POST['search'];
-                $myquery = "SELECT * FROM patient, payment_details WHERE PID like '$st'";
+                $myquery = "SELECT patient.* , payment_details.BillAmount FROM patient INNER JOIN payment_details  on patient.PID=payment_details.p_id WHERE PID like '%$st%'";
                 //   " SELECT * FROM patient  where PID like '%$st%'";
                 //   $myquery2=" SELECT * FROM accountant where patient_id like '%$st%'";
                 $result = mysqli_query($conn, $myquery);
@@ -130,9 +130,7 @@ if (!isset($_SESSION['admin-name'])) {
             </table>
             <?php
                 }
-            } else {
-                echo "ID doesnt exist";
-            }
+            } 
 
 
             ?>

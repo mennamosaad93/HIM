@@ -75,19 +75,19 @@ if (!isset($_SESSION['admin-name'])) {
 
 
 
-            if (isset($_POST['search1'])) {
+if (isset($_POST['search1'])) {
 
 
-                $st = $_POST['search'];
-                $myquery = "SELECT patient.* , payment_details.BillAmount FROM patient INNER JOIN payment_details  on patient.PID=payment_details.p_id WHERE PID like '$st'";
-                //   " SELECT * FROM patient  where PID like '%$st%'";
-                //   $myquery2=" SELECT * FROM accountant where patient_id like '%$st%'";
-                $result = mysqli_query($conn, $myquery);
-                while ($row = mysqli_fetch_array($result)) {
-                    // code...
+    $st = $_POST['search'];
+    $myquery = "SELECT patient.* , payment_details.BillAmount FROM patient INNER JOIN payment_details  on patient.PID=payment_details.p_id WHERE PID like '$st'";
+    //   " SELECT * FROM patient  where PID like '%$st%'";
+    //   $myquery2=" SELECT * FROM accountant where patient_id like '%$st%'";
+    $result = mysqli_query($conn, $myquery);
+    while ($row = mysqli_fetch_array($result)) {
+        // code...
 
 
-            ?>
+?>
             <table>
 
                 <thead>
@@ -109,28 +109,28 @@ if (!isset($_SESSION['admin-name'])) {
                         <td><?php print_r($row['BillAmount']); ?></td>
                         <td><a href="patient-information.php">
                                 <?php
-                                        $_SESSION['patient-case'] = $row['case'];
-                                        $_SESSION['patient-name'] = $row['firstname'];
-                                        $_SESSION['patient-gender'] = $row['gender'];
-                                        $_SESSION['patient-age'] = $row['age'];
-                                        $_SESSION['patient-address'] = $row['address'];
-                                        $_SESSION['patient-phone'] = $row['phone'];
-                                        $_SESSION['patient-email'] = $row['email'];
-                                        $_SESSION['patient-Bill'] = $row['BillAmount'];
+                            $_SESSION['patient-case'] = $row['case'];
+                            $_SESSION['patient-name'] = $row['firstname'];
+                            $_SESSION['patient-gender'] = $row['gender'];
+                            $_SESSION['patient-age'] = $row['age'];
+                            $_SESSION['patient-address'] = $row['address'];
+                            $_SESSION['patient-phone'] = $row['phone'];
+                            $_SESSION['patient-email'] = $row['email'];
+                            $_SESSION['patient-Bill'] = $row['BillAmount'];
 
 
 
 
-                                        ?>
+                            ?>
                                 Click here</a></td>
                     </tr>
             </table>
             <?php
-                }
-            } 
+    }
+} 
 
 
-            ?>
+?>
         </section>
     </div>
     <?php

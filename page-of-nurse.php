@@ -35,7 +35,8 @@ if (!isset($_SESSION['admin-name'])) {
     <!-- the main -->
     <section class="main">
         <div>
-            <h2>Hello, Nurse: <strong><?php echo $_SESSION['admin-name']; ?></strong> <br><span>Hospital Information System</span></h2>
+            <h2>Hello, Nurse: <strong><?php echo $_SESSION['admin-name']; ?></strong> <br><span>Hospital Information
+                    System</span></h2>
             <h3>This system was created to help hospitals manage their internal affairs and assist hospital staff</h3>
             <a href="#schedule" class="main-btn">Manage my work</a>
             <div class="social-icons">
@@ -69,23 +70,23 @@ if (!isset($_SESSION['admin-name'])) {
             <h2>Patient Information</h2>
             <?php
 
-        
-        
-        if (isset($_POST['search1'])) {
 
-    
-                  $st= $_POST['search'] ;
-                  $myquery="SELECT * FROM patient, payment_details WHERE PID like '$st'";
+
+            if (isset($_POST['search1'])) {
+
+
+                $st = $_POST['search'];
+                $myquery = "SELECT patient.* , payment_details.BillAmount FROM patient INNER JOIN payment_details  on patient.PID=payment_details.p_id WHERE PID like '$st'";
                 //   " SELECT * FROM patient  where PID like '%$st%'";
                 //   $myquery2=" SELECT * FROM accountant where patient_id like '%$st%'";
-                  $result= mysqli_query($conn, $myquery);
-                  while ($row=mysqli_fetch_array($result) ) { 
+                $result = mysqli_query($conn, $myquery);
+                while ($row = mysqli_fetch_array($result)) {
                     // code...
 
-                 	
-		?>
+
+            ?>
             <table>
-            
+
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -99,37 +100,34 @@ if (!isset($_SESSION['admin-name'])) {
                 <tbody>
                     <tr>
                         <td><?php print_r($row['PID']);  ?></td>
-                        <td><?php print_r($row['firstname']) ."". print_r($row['lastname']); ?></td>
+                        <td><?php print_r($row['firstname']) . "" . print_r($row['lastname']); ?></td>
                         <td><?php print_r($row['room']); ?></td>
                         <td><?php print_r($row['birthdate']); ?></td>
                         <td><?php print_r($row['BillAmount']); ?></td>
                         <td><a href="patient-information.php">
-                            <?php
-                        $_SESSION['patient-case'] = $row['case'];
-                        $_SESSION['patient-name'] = $row['firstname'];
-                        $_SESSION['patient-gender'] = $row['gender'];
-                        $_SESSION['patient-age'] = $row['age'];
-                        $_SESSION['patient-address'] = $row['address'];
-                        $_SESSION['patient-phone'] = $row['phone'];
-                        $_SESSION['patient-email'] = $row['email'];
-                        $_SESSION['patient-Bill'] = $row['BillAmount'];
-                        
-                         
-                        
-                        
-                        ?>
-                        Click here</a></td>
+                                <?php
+                                        $_SESSION['patient-case'] = $row['case'];
+                                        $_SESSION['patient-name'] = $row['firstname'];
+                                        $_SESSION['patient-gender'] = $row['gender'];
+                                        $_SESSION['patient-age'] = $row['age'];
+                                        $_SESSION['patient-address'] = $row['address'];
+                                        $_SESSION['patient-phone'] = $row['phone'];
+                                        $_SESSION['patient-email'] = $row['email'];
+                                        $_SESSION['patient-Bill'] = $row['BillAmount'];
+
+
+
+
+                                        ?>
+                                Click here</a></td>
                     </tr>
             </table>
             <?php
-    }
-        
-    }else{
-        echo "ID doesnt exist";
-    }
-    
+                }
+            } 
 
-    ?>
+
+            ?>
         </section>
     </div>
 
@@ -246,17 +244,17 @@ if (!isset($_SESSION['admin-name'])) {
 
                         ?>
 
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <input type="checkbox" name="stud_delete_id[]" value="<?= $row['Sch_ID']; ?>">
-                                        </td>
-                                        <td><?= $row['start_date']; ?></td>
-                                        <td><?= $row['end_date']; ?></td>
-                                        <td><?= $row['start_time']; ?></td>
-                                        <td><?= $row['end_time']; ?></td>
-                                    </tr>
-                                </tbody>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="stud_delete_id[]" value="<?= $row['Sch_ID']; ?>">
+                                </td>
+                                <td><?= $row['start_date']; ?></td>
+                                <td><?= $row['end_date']; ?></td>
+                                <td><?= $row['start_time']; ?></td>
+                                <td><?= $row['end_time']; ?></td>
+                            </tr>
+                        </tbody>
                         <?php }
                         } ?>
                     </table>
