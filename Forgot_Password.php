@@ -6,16 +6,14 @@ if (isset($_POST['email'])) {
   $email= $_POST['email'];
   
   # code...
-}else{
-  exit;
-  }
+}
   
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
-require 'PHPMailer/src/Exception.php';
-require 'PHPMailer/src/PHPMailer.php';
-require 'PHPMailer/src/SMTP.php';
+require 'PHPMailer/Exception.php';
+require 'PHPMailer/PHPMailer.php';
+require 'PHPMailer/SMTP.php';
 
 //Create an instance; passing `true` enables exceptions
 $mail = new PHPMailer(true);
@@ -27,7 +25,7 @@ try {
     $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
     $mail->Username   = 'hussienelassy040@gmail.com';                     //SMTP username
-    $mail->Password   = 'hussienmohamedhassanelassy';                               //SMTP password
+    $mail->Password   = 'nopjcbwmszzhzefi';                               //SMTP password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;          //Enable implicit TLS encryption
     $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
@@ -43,7 +41,7 @@ try {
     $mail->Body    = 'to reset ur password click <a href="http://localhost/him/him/change_password.php?code='.$code.'"> Here </a>. </br>Reset ur password in a day.';
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
-    $verifyQuery =  $conn->query("SELECT * FROM token WHERE emaill='$email'");
+    $verifyQuery =  $conn->query("SELECT * FROM token WHERE email='$email'");
 
     if($verifyQuery->num_rows){
       
