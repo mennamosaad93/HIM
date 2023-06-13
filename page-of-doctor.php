@@ -247,6 +247,30 @@ if (!isset($_SESSION['admin-name'])) {
             <button type="submit" name="add">Add Bill</button>
         </form>
     </section>
+    <?php 
+    if(isset($_POST['SetTime'])){
+        $PID = $_POST["PID"];
+        $Result = mysqli_query($conn, "SELECT employee.PID, doctroschedule.*  FROM employee INNER JOIN doctroschedule ON employee.PID=doctroschedule.DoctorID WHERE PID='$PID'" );
+        $row = mysqli_fetch_array($Result);
+        if(mysqli_num_rows($Result) > 0 ){
+            if($PID == $row['PID']){
+                $PID = mysqli_real_escape_string($conn,$_POST['PID']);
+                $StartDate = mysqli_real_escape_string($conn,$_POST['StartDate']);
+                $EndDate = mysqli_real_escape_string($conn,$_POST['EndDate']);
+                $StartTime = mysqli_real_escape_string($conn,$_POST['StartTime']);
+                $EndTime = mysqli_real_escape_string($conn,$_POST['EndTime']);
+                $Query = mysqli_query($conn, "INSERT INTO doctroschedule VALUES('','$PID','$StartDate','$EndDate','$StartTime','$EndTime')");
+                echo 
+                     "<script> alert('SCH Added Successfully'); </script>";
+            }
+            }else{
+                echo 
+                "<script> alert('ID Doesnt Match'); </script>";
+              }
+        }
+    
+    
+    ?>
 
 
     <!-- The set schedule -->
@@ -254,66 +278,82 @@ if (!isset($_SESSION['admin-name'])) {
         <div class="content">
             <section class="schedule-management">
                 <h2>Manage Doctor's Schedule</h2>
-                <form>
+                <form method="post" action="page-of-doctor.php">
                     <fieldset>
+                        <legend>Doctor Id:</legend>
+                        <input type="text" id="PID" name="PID" required><br>
+
                         <legend>Set Your Availability</legend>
-                        <label for="start-date">Start Date:</label>
-                        <input type="date" id="start-date" name="start-date" required><br>
+                        <label for="StartDate">Start Date:</label>
+                        <input type="date" id="StartDate" name="StartDate" required><br>
 
-                        <label for="end-date">End Date:</label>
-                        <input type="date" id="end-date" name="end-date" required><br>
+                        <label for="EndDate">End Date:</label>
+                        <input type="date" id="EndDate" name="EndDate" required><br>
 
-                        <label for="start-time">Start Time:</label>
-                        <input type="time" id="start-time" name="start-time" required><br>
+                        <label for="StartTime">Start Time:</label>
+                        <input type="time" id="StartTime" name="StartTime" required><br>
 
-                        <label for="end-time">End Time:</label>
-                        <input type="time" id="end-time" name="end-time" required><br>
+                        <label for="EndTime">End Time:</label>
+                        <input type="time" id="EndTime" name="EndTime" required><br>
                     </fieldset>
 
-                    <button type="submit">Set Availability</button>
+                    <button type="submit" name="SetTime">Set Availability</button>
                 </form>
                 <hr>
                 <!-- the table schedule -->
                 <h3>Your Schedule</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Start Time</th>
-                            <th>End Time</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>May 10, 2023</td>
-                            <td>10:00am</td>
-                            <td>11:00am</td>
-                            <td>
-                                <button>Edit</button>
-                                <button>Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>May 11, 2023</td>
-                            <td>2:00pm</td>
-                            <td>3:00pm</td>
-                            <td>
-                                <button>Edit</button>
-                                <button>Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>May 12, 2023</td>
-                            <td>9:00am</td>
-                            <td>10:00am</td>
-                            <td>
-                                <button>Edit</button>
-                                <button>Delete</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <?php
+                    if (isset($_SESSION['status'])){
+
+                        echo "<h4>".$_SESSION['status']."</h4>";
+                        unset($_SESSION['status']);
+
+                    }
+
+
+                ?>
+                <form method="post" action="Ddelete.php">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>
+                                    <button type="submit" name="delete">Delete</button>
+                                </th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Start Time</th>
+                                <th>End Time</th>
+                            </tr>
+                        </thead>
+                        <?php
+
+                        $query2 = "SELECT * FROM doctroschedule";
+                        $data = mysqli_query($conn, $query2);
+                        $results = mysqli_num_rows($data);
+                        if ($results) {
+                            // while ($row = mysqli_fetch_array($data)) {
+                            //     $id=$row['Sch_ID'];
+                            foreach ($data as $row) {
+
+
+
+
+                        ?>
+
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="Doc_delete_id[]" value="<?= $row['schedule_ID']; ?>">
+                                </td>
+                                <td><?= $row['StartDate']; ?></td>
+                                <td><?= $row['EndDate']; ?></td>
+                                <td><?= $row['StartTime']; ?></td>
+                                <td><?= $row['EndTime']; ?></td>
+                            </tr>
+                        </tbody>
+                        <?php }
+                        } ?>
+                    </table>
             </section>
 
         </div>

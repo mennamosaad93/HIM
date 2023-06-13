@@ -124,7 +124,7 @@ if (!isset($_SESSION['admin-name'])) {
             </table>
             <?php
                 }
-            } 
+            }
 
 
             ?>
@@ -175,7 +175,34 @@ if (!isset($_SESSION['admin-name'])) {
             <button type="submit" name="ADD">Add notes</button>
         </form>
     </section>
+    <?php 
+    if(isset($_POST['SetTime'])){
+        $PID = $_POST["PID"];
+        $Result = mysqli_query($conn, "SELECT employee.PID, clinic_schedule.*  FROM employee INNER JOIN clinic_schedule ON employee.PID=clinic_schedule.nurseID WHERE PID='$PID'" );
+        $row = mysqli_fetch_array($Result);
+        if(mysqli_num_rows($Result) > 0 ){
+            if($PID == $row['PID']){
+                $PID = mysqli_real_escape_string($conn,$_POST['PID']);
+                $StartDate = mysqli_real_escape_string($conn,$_POST['StartDate']);
+                $EndDate = mysqli_real_escape_string($conn,$_POST['EndDate']);
+                $StartTime = mysqli_real_escape_string($conn,$_POST['StartTime']);
+                $EndTime = mysqli_real_escape_string($conn,$_POST['EndTime']);
+                $Query = mysqli_query($conn, "INSERT INTO clinic_schedule VALUES('','$PID','$StartDate','$EndDate','$StartTime','$EndTime')");
+                echo 
+                     "<script> alert('SCH Added Successfully'); </script>";
+            }
+            }else{
+                echo 
+                "<script> alert('ID Doesnt Match'); </script>";
+              }
+        }
+    
+    
+    ?>
 
+
+
+    ?>
     <!-- The schedule -->
     <section class="schedule" id="schedule">
         <div class="content">
@@ -184,7 +211,7 @@ if (!isset($_SESSION['admin-name'])) {
                 <form method="post" action="page-of-nurse.php#schedule">
                     <fieldset>
                         <legend>Nurse Id:</legend>
-                        <input type="text" id="NurseId" name="NurseId" required><br>
+                        <input type="text" id="PID" name="PID" required><br>
 
 
                         <legend>Set Your Availability</legend>
