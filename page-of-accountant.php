@@ -30,6 +30,7 @@ if (!isset($_SESSION['admin-name'])) {
             <a href="#Staff-Search">Staff Search</a>
             <a href="#contact">Contact</a>
             <a href="Policies.html">Policies</a>
+            <a href="indes.php">QR Generator</a>
             <a href="logout.php">Logout</a>
         </nav>
     </header>
@@ -103,7 +104,7 @@ if (isset($_POST['search1'])) {
                 <tbody>
                     <tr>
                         <td><?php print_r($row['PID']);  ?></td>
-                        <td><?php print_r($row['firstname']) . "" . print_r($row['lastname']); ?></td>
+                        <td><?php print_r($row['firstname']); ?></td>
                         <td><?php print_r($row['room']); ?></td>
                         <td><?php print_r($row['birthdate']); ?></td>
                         <td><?php print_r($row['BillAmount']); ?></td>
