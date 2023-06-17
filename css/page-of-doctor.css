@@ -589,53 +589,128 @@ button[type="submit"]:hover {
 }
 
 @media (max-width:1023px){
-    header{
-        padding: 12px 20px;
-    }
+  header{
+      padding: 2px 12px;
+  }
 
-    .navigation a{
-        padding-left: 10px;
-    }
+  .navigation a{
+      padding-left: 10px;
+  }
 
-    .title{
-        font-size: 1.8em;
-    }
+  .title{
+      font-size: 1.8em;
+  }
 
-    section{
-        padding: 80px 20px;
-    }
+  section{
+      padding: 80px 20px;
+  }
 
-    .main-content h2{
-        font-size: 1em;
-    }
+  .main-content h2{
+      font-size: 1em;
+  }
 
-    .main-content h3{
-        font-size: 1.6em;
-    }
+  .main-content h3{
+      font-size: 1.6em;
+  }
 
-    .content{
-        flex-direction: column;
-        align-items: center;
-    }
+  .content{
+      flex-direction: column;
+      align-items: center;
+  }
 
+  .map .map_img {
+    width: 780px;
+  }
+
+  .map_text {
+    width: 650px;
+    left: 60px;
+  }
+
+  .search-bar {
+    left: 50px;
+  }
+
+.search-bar label{
+  left: -10px;
+}
+
+  .patient-information h2 {
+    width: 450px;
+    left: 150px;
+  }
+
+  .patient-information table {
+    width: 103%;
+    top: 135px;
+    right: 10px;
+}
+
+.patient-information th,
+.patient-information td {
+padding: 4.8px;
+}
+
+.add-medication-doses {
+  left: 35px;
+}
+
+.add-bills {
+  left: 35px;
+}
 }
 
 @media (max-width:641px){
-    body{
-        font-size: 12px;
-    }
+  body{
+      font-size: 12px;
+  }
 
-    .main-content h2{
-        font-size: 0.8em;
-    }
+  .main-content h2{
+      font-size: 0.8em;
+  }
 
-    .main-content h3{
-        font-size: 1.4em;
-    }
+  .main-content h3{
+      font-size: 1.4em;
+  }
+
+  .map .map_img {
+    width: 480px;
+  }
+
+  .map_text {
+    width: 450px;
+    left: 20px;
+  }
+
+  .search-bar {
+    left: 1px;
+  }
+
+.search-bar label{
+  left: -10px;
 }
 
-@media (max-width:300px){
-    body{
-        font-size: 10px;
-    }
+  .patient-information h2 {
+    width: 450px;
+    left: 1px;
+  }
+
+  .patient-information table {
+    width: 100%;
+    top: 145px;
+    right: 20px;
+}
+
+.patient-information th,
+.patient-information td {
+padding: 4.8px;
+}
+
+.add-medication-doses {
+  left: 25px;
+}
+
+.add-bills {
+  left: 25px;
+}
 }
