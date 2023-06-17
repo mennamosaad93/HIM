@@ -111,6 +111,36 @@ th {
     font-weight: bold;
 }
 
-/* tr:nth-child(even) {
-    background-color: #f2f2f2;
-} */
+@media (min-width:350px) and (max-width:720px){
+    .content{
+        height: 95%;
+        width: 95%;
+    }
+
+    nav{
+        width: 90%;
+}
+
+nav .logo{
+    color: #fff;
+    text-decoration: none;
+    font-size: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    position: relative;
+    right: 5px;
+
+}
+
+.internal{
+    height: 100%;
+    width: 95%;
+}
+
+th, td {
+    font-size: 15px;
+    padding: 7px;
+}
+
+}
