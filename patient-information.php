@@ -24,7 +24,7 @@ if(!isset($_SESSION['admin-name'])){
             <img src="CSS/images/logo2 black.png" width="50px" height="50px">
             <a class="logo"  href="#">HIS</a>
             <ul>
-                <li><a href="Doctor.html">Home</a></li>
+                <li><a href="login.php">Home</a></li>
                 <li><a href="#">Print</a></li>
                 <li><a href="#">Report</a></li>
                 <li><a href="#">Contact</a></li>

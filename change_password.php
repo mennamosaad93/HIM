@@ -73,7 +73,7 @@
                 <button type="submit" name="submit">Submit</button>
             </form>
             <div class="form-group">
-                <p>Back to <a href="home_page.html">Home Page</a></p>
+                <p>Back to <a href="login.php">Home Page</a></p>
             </div>
         </div>
     </div>

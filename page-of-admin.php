@@ -208,7 +208,7 @@ if (!isset($_SESSION['admin-name'])) {
             </form>
         </div>
         <!-- add staff button -->
-        <a href="staff_registration.html" class="staff-add-btn">Add new member</a>
+        <a href="staff_registration.php" class="staff-add-btn">Add new member</a>
         <!-- staff information -->
         <section class="staff-information">
             <h2>Staff Information</h2>
