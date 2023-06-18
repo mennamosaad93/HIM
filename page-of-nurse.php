@@ -29,6 +29,7 @@ if (!isset($_SESSION['admin-name'])) {
             <a href="#schedule">Your Schedule</a>
             <a href="#contact">Contact</a>
             <a href="Policies.html">Policies</a>
+            <a href="logout.php">Logout</a>
         </nav>
     </header>
 

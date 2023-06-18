@@ -43,8 +43,8 @@
 
     ?>
 
-    <p style="color:red;"><?php if ($_SESSION['msg1']){echo $_SESSION['msg1'];  ?><?php echo $_SESSION['msg1'] ="";} ?>
-    </p>
+    <!-- <p style="color:red;"><?php if ($_SESSION['msg1']){echo $_SESSION['msg1'];  ?><?php echo $_SESSION['msg1'] ="";} ?>
+    </p> -->
     <div class="change-password-box">
         <div class="logo"><img src="css/images/logo2.png" class="avatar" width="100" height="100"></div>
         <div class="name">
