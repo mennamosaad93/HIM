@@ -63,6 +63,7 @@ if (isset($_POST['email'])) {
 <html>
 
 <head>
+<link rel="Website Icon" href="css/images/logo2.png" type="png" >
     <title>Hospital Management System - Forgot Password</title>
     <link rel="stylesheet" href="css/Forgot_Password.css">
 </head>

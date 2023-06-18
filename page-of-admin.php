@@ -25,6 +25,8 @@ if (!isset($_SESSION['admin-name'])) {
 <body>
     <!-- Header -->
     <header>
+    <link rel="Website Icon" href="css/images/logo2.png" type="png" >
+
         <div class="logo_image"> <img src="css/images/logo2.png" alt="HIS Logo" width="80" height="80"> </div>
         <a href="#" class="logo-name">Hospital Information System</a>
         <nav class="navigation">

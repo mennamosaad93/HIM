@@ -44,6 +44,8 @@ if(isset($_POST['submit'])){
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="Website Icon" href="css/images/logo2.png" type="png" >
+
 	<title>Hospital Management System Registration</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">

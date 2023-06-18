@@ -49,6 +49,7 @@ session_start();
 <html>
 
 <head>
+    <link rel="Website Icon" href="css/images/logo2.png" type="png" >
     <title>Hospital Information System- Login</title>
     <link rel="stylesheet" type="text/css" href="css/login.css">
 </head>

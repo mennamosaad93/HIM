@@ -3,6 +3,7 @@
 <html>
 
 <head>
+<link rel="Website Icon" href="css/images/logo2.png" type="png" >
     <title>Change Password</title>
     <link rel="stylesheet" href="css/change_password.css">
 </head>

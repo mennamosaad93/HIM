@@ -8,6 +8,8 @@ if(!isset($_SESSION['admin-name'])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="Website Icon" href="css/images/logo2.png" type="png" >
+
     <title>Hospital Information System</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
