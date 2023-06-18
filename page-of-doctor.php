@@ -117,8 +117,6 @@ if (!isset($_SESSION['admin-name'])) {
                                         $_SESSION['patient-Bill'] = $row['BillAmount'];
 
 
-
-
                                         ?>
                                 Click here</a></td>
                     </tr>
@@ -261,12 +259,12 @@ if (!isset($_SESSION['admin-name'])) {
                 $EndTime = mysqli_real_escape_string($conn,$_POST['EndTime']);
                 $Query = mysqli_query($conn, "INSERT INTO doctroschedule VALUES('','$PID','$StartDate','$EndDate','$StartTime','$EndTime')");
                 echo 
-                     "<script> alert('SCH Added Successfully'); </script>";
+                    "<script> alert('SCH Added Successfully'); </script>";
             }
             }else{
                 echo 
                 "<script> alert('ID Doesnt Match'); </script>";
-              }
+            }
         }
     
     

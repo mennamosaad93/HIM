@@ -4,6 +4,7 @@ body {
 	font-family: sans-serif;
 	background-image: url(../css/images/hospital3.png);
 	background-size: cover;
+	background-attachment: fixed;
 }
 
 .logo {
@@ -82,5 +83,3 @@ body {
 .login-box a:hover {
 	color: #0066CC;
 }
-
-
