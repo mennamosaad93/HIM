@@ -55,7 +55,7 @@ if (isset($_POST['submit'])) {
   <title>Hospital Link Registration</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="CSS/staff_registration.css">
+  <link rel="stylesheet" type="text/css" href="css/staff_registration.css">
 </head>
 
 <body>

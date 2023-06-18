@@ -18,7 +18,7 @@ if (!isset($_SESSION['admin-name'])) {
 
     <!--this external file to the icon in page-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="CSS/page-of-admin.css">
+    <link rel="stylesheet" href="css/page-of-admin.css">
     <title>Hospital Information System</title>
 </head>
 
