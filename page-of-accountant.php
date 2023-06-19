@@ -196,7 +196,7 @@ if (isset($_POST['search1'])) {
     <div class="staff-background" id="Staff-Search">
         <!-- staff search bar -->
         <div id="staff-search-bar">
-            <form method="post" action="page-of-admin.php#staff-search-bar" class="staff-search-bar">
+            <form method="post" action="page-of-accountant.php#staff-search-bar" class="staff-search-bar">
                 <label for="search">Staff search:</label>
                 <input type="text" name="Staff-S1" placeholder="Search by ID">
                 <button type="submit" name="Staff-S">Search</button>
