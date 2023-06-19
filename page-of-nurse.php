@@ -61,7 +61,7 @@ if (!isset($_SESSION['admin-name'])) {
     <div class="patient-background">
         <!-- search bar -->
         <div id="search-bar">
-            <form class="search-bar" action="page-of-admin.php#search-bar" method="post">
+            <form class="search-bar" action="page-of-nurse.php#search-bar" method="post">
                 <label for="search">Patient search:</label>
                 <input type="text" name="search" placeholder="Search by Room or ID">
                 <button type="submit" name="search1">Search</button>
