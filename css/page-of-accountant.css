@@ -17,7 +17,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 6px 130px ;
+    padding: 3px 20px ;
 }
 
 .logo{
@@ -25,14 +25,14 @@ header {
     color: #0578C0;
     text-transform: uppercase;
     font-weight: 700;
-    font-size: 1.8em;
+    font-size: 1.7em;
     position: relative;
-    right: 90px;
+    right: 15px;
 }
 
 .logo_image {
     position: relative;
-    right: 90px;
+    left: 7px;
 }
 
 .navigation a{
@@ -497,56 +497,191 @@ background-color: #e1e7eb;
 
 @media (max-width:1023px){
     header{
-        padding: 12px 20px;
+      padding: 1px 3px;
+      font-size: .95em;
     }
-
+  
     .navigation a{
-        padding-left: 10px;
+      padding-left: 10px;
     }
 
+    .logo{
+        font-size: 1.7em;
+        right: 65px;
+        }
+
+    .logo_image {
+        left: -100px;
+    }
+  
     .title{
-        font-size: 1.8em;
+      font-size: 1.8em;
     }
-
+  
     section{
-        padding: 80px 20px;
+      padding: 80px 20px;
     }
-
+  
     .main-content h2{
-        font-size: 1em;
+      font-size: 1em;
     }
-
+  
     .main-content h3{
-        font-size: 1.6em;
+      font-size: 1.6em;
     }
-
+  
     .content{
-        flex-direction: column;
-        align-items: center;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .map .map_img {
+      width: 780px;
+    }
+  
+    .map_text {
+      width: 650px;
+      left: 60px;
+    }
+  
+    .patient-search-bar {
+        left: 50px;
+      }
+    
+        .patient-search-bar label{
+      left: -10px;
+      }
+    
+      .patient-information h2 {
+        width: 450px;
+        left: 170px;
+      }
+    
+      .patient-information table {
+        width: 100%;
+        top: 145px;
+        right: 5px;
+      }
+    
+      .patient-information th,
+      .patient-information td {
+        padding: 4.8px;
+      }
+
+      .add-bills {
+        left: 40px;
+    }
+  
+      .staff-search-bar {
+          left: 50px;
+        }
+      
+          .staff-search-bar label{
+        left: -10px;
+        }
+      
+        .staff-information h2 {
+          width: 450px;
+          left: 170px;
+        }
+      
+        .staff-information table {
+          width: 100%;
+          top: 145px;
+          right: 5px;
+        }
+      
+        .staff-information th,
+        .staff-information td {
+          padding: 4.8px;
+        }
+  }
+  
+  @media (max-width:641px){
+  
+    header{
+      padding: 1px 3px;
+      font-size: 0.85em;
     }
 
-}
+    .logo{
+        right: 65px;
+    }
 
-@media (max-width:641px){
+    .logo_image {
+        left: -100px;
+    }
+  
     body{
-        font-size: 12px;
+      font-size: 12px;
     }
-
+  
     .main-content h2{
-        font-size: 0.8em;
+      font-size: 0.8em;
     }
-
+  
     .main-content h3{
-        font-size: 1.4em;
+      font-size: 1.4em;
     }
-}
-
-@media (max-width:300px){
-    body{
-        font-size: 10px;
+  
+    .map .map_img {
+      width: 480px;
     }
-}
+  
+    .map_text {
+      width: 450px;
+      left: 20px;
+    }
+  
+    .patient-search-bar {
+      left: 1px;
+    }
+  
+      .patient-search-bar label{
+    left: -10px;
+    }
+  
+    .patient-information h2 {
+      width: 450px;
+      left: 1px;
+    }
+  
+    .patient-information table {
+      width: 100%;
+      top: 145px;
+      right: 5px;
+    }
+  
+    .patient-information th,
+    .patient-information td {
+      padding: 4.8px;
+    }
 
+    .add-bills {
+        left: 20px;
+    }
 
-
-
+    .staff-search-bar {
+        left: 1px;
+      }
+    
+        .staff-search-bar label{
+      left: -10px;
+      }
+    
+      .staff-information h2 {
+        width: 450px;
+        left: 1px;
+      }
+    
+      .staff-information table {
+        width: 100%;
+        top: 145px;
+        right: 5px;
+      }
+    
+      .staff-information th,
+      .staff-information td {
+        padding: 4.8px;
+      }
+  }
