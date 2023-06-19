@@ -109,6 +109,13 @@ th {
     font-weight: bold;
 }
 
-/* tr:nth-child(even) {
-    background-color: #f2f2f2;
-} */
+@media (max-width:1023px){
+    .content{
+        height: 90%;
+        width: 95%;
+    }
+
+    .internal .text h2 {
+        font-size: 25px;
+    }
+}
