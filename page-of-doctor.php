@@ -171,18 +171,18 @@ if (!isset($_SESSION['admin-name'])) {
             </fieldset>
 
             <fieldset>
-                <legend>MedicationName</legend>
-                <label for="MedicationName">MedicationName:</label>
+                <legend>Medication Details</legend>
+                <label for="MedicationName">Name:</label>
                 <input type="text" id="MedicationName" name="MedicationName" required><br>
 
-                <label for="Frequency">Frequency:</label>
-                <input type="text" id="Frequency" name="Frequency" required><br>
+                <label for="dosage">dosage:</label>
+                <input type="text" id="dosage" name="dosage" required><br>
 
                 <label for="Duration">Duration:</label>
                 <input type="text" id="Duration" name="Duration" required><br>
 
-                <label for="dosage">dosage:</label>
-                <input type="text" id="dosage" name="dosage" required><br>
+                <label for="Frequency">Frequency:</label>
+                <input type="text" id="Frequency" name="Frequency" required><br>
 
                 <label for="price">price:</label>
                 <input type="text" id="price" name="price" required><br>
@@ -229,7 +229,7 @@ if (!isset($_SESSION['admin-name'])) {
                 <label for="PID">ID:</label>
                 <input type="text" id="PID" name="PID">
                 <br>
-                <label for="acc_id">acc_id:</label>
+                <label for="acc_id">Acc. ID:</label>
                 <input type="text" id="acc_id" name="acc_id">
             </fieldset>
 
@@ -248,6 +248,67 @@ if (!isset($_SESSION['admin-name'])) {
             <button type="submit" name="add">Add Bill</button>
         </form>
     </section>
+
+    <!-- Add x-ray -->
+    <section class="add-x-ray">
+        <h2>x-ray Request</h2>
+        <form method="post">
+            <fieldset>
+                <legend>Patient Information</legend>
+                <label for="PID">ID:</label>
+                <input type="text" id="PID" name="PID">
+            </fieldset>
+
+            <fieldset>
+                <legend>x-ray Information</legend>
+
+                <label for="type">x-ray Type:</label>
+                <input type="text" id="type" name="type"><br>
+
+                <label for="note">Note:</label>
+                <input type="text" id="note" name="note"><br>
+
+                <label for="x-ray_date">x-ray Date:</label>
+                <input type="date" id="x-ray_date" name="x-ray_date" required><br>
+
+                <label for="price">Price:</label>
+                <input type="number" id="price" name="price" required>
+            </fieldset>
+
+            <button type="submit" name="add">Add</button>
+        </form>
+    </section>
+
+        <!-- Add Lab -->
+        <section class="add-lab">
+        <h2>Laboratory Request</h2>
+        <form method="post">
+            <fieldset>
+                <legend>Patient Information</legend>
+                <label for="PID">ID:</label>
+                <input type="text" id="PID" name="PID">
+            </fieldset>
+
+            <fieldset>
+                <legend>Examination information</legend>
+
+                <label for="type">Examination type:</label>
+                <input type="text" id="type" name="type"><br>
+
+                <label for="note">Note:</label>
+                <input type="text" id="note" name="note"><br>
+
+                <label for="examination_date">Examination date:</label>
+                <input type="date" id="examination_date" name="examination_date" required><br>
+
+                <label for="price">Price:</label>
+                <input type="number" id="price" name="price" required>
+            </fieldset>
+
+            <button type="submit" name="add">Add</button>
+        </form>
+    </section>
+
     <?php 
     if(isset($_POST['SetTime'])){
         $PID = $_POST["PID"];

@@ -62,7 +62,7 @@ session_start();
         </div>
         <h2>Login</h2>
         <form action="login.php" method="POST">
-            <p>email</p>
+            <p>Email</p>
             <input type="text" name="email" placeholder="Enter your email" required>
             <p>Password</p>
             <input type="password" name="password" placeholder="Enter password" required>

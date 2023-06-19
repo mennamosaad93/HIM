@@ -85,12 +85,12 @@ textarea {
 	resize: none;
 }
 
-/* .signin {
+.signin {
     text-align: center;
 }
 .signin a {
     color: #337ab7;
 }
 .signin a:hover {
-    text-decoration: underline;
-} */
+	text-decoration: underline;
+}
