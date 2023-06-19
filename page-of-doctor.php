@@ -250,6 +250,29 @@ if (!isset($_SESSION['admin-name'])) {
     </section>
 
     <!-- Add x-ray -->
+    <?php
+    if (isset($_POST['add-test'])) {
+        $PID = $_POST["PID"];
+        $Result = mysqli_query($conn, "SELECT * FROM patient  WHERE PID='$PID'");
+        $row = mysqli_fetch_array($Result);
+        if ($PID == $row['PID']) {
+            $PID = mysqli_real_escape_string($conn, $_POST['PID']);
+            $test_type = mysqli_real_escape_string($conn, $_POST['type']);
+            $test_notes = mysqli_real_escape_string($conn, $_POST['note']);
+            $test_date = mysqli_real_escape_string($conn, $_POST['x-ray_date']);
+            $test_price = mysqli_real_escape_string($conn, $_POST['price']);
+            $Query = mysqli_query($conn, "INSERT INTO x_ray VALUES('','$PID','$test_type','$test_notes','$test_date','','$test_price')");
+            echo
+            "<script> alert('test ordered Successfully'); </script>";
+        } else {
+            echo
+            "<script> alert('ID Doesnt Match'); </script>";
+        }
+
+
+
+    }
+    ?>
     <section class="add-x-ray">
         <h2>x-ray Request</h2>
         <form method="post">
@@ -275,12 +298,36 @@ if (!isset($_SESSION['admin-name'])) {
                 <input type="number" id="price" name="price" required>
             </fieldset>
 
-            <button type="submit" name="add">Add</button>
+            <button type="submit" name="add-test">Add</button>
         </form>
     </section>
 
-        <!-- Add Lab -->
-        <section class="add-lab">
+    <!-- Add Lab -->
+    <?php
+    if (isset($_POST['add-lab'])) {
+        $PID = $_POST["PID"];
+        $Result = mysqli_query($conn, "SELECT * FROM patient  WHERE PID='$PID'");
+        $row = mysqli_fetch_array($Result);
+        if ($PID == $row['PID']) {
+            $PID = mysqli_real_escape_string($conn, $_POST['PID']);
+            $lab_type = mysqli_real_escape_string($conn, $_POST['type']);
+            $lab_notes = mysqli_real_escape_string($conn, $_POST['note']);
+            $lab_date = mysqli_real_escape_string($conn, $_POST['examination_date']);
+            $lab_price = mysqli_real_escape_string($conn, $_POST['price']);
+            $Query = mysqli_query($conn, "INSERT INTO lab VALUES('','$PID','$lab_type','$lab_notes','$lab_date','','$lab_price')");
+            echo
+            "<script> alert('test ordered Successfully'); </script>";
+        } else {
+            echo
+            "<script> alert('ID Doesnt Match'); </script>";
+        }
+
+
+
+    }
+    ?>
+
+    <section class="add-lab">
         <h2>Laboratory Request</h2>
         <form method="post">
             <fieldset>
@@ -305,10 +352,9 @@ if (!isset($_SESSION['admin-name'])) {
                 <input type="number" id="price" name="price" required>
             </fieldset>
 
-            <button type="submit" name="add">Add</button>
+            <button type="submit" name="add-lab">Add</button>
         </form>
     </section>
-
     <?php 
     if(isset($_POST['SetTime'])){
         $PID = $_POST["PID"];
