@@ -103,3 +103,34 @@ color: #000016;
 font-size: 1.3em;
 padding: 0 12px 0 0;
 }
+
+@media (max-width:1023px){
+  header {
+    font-size: 10px;
+    padding: 3px;
+  }
+  
+  nav {
+    padding: 5px;
+  }
+  
+  nav ul li {
+    font-size: 11px;
+    margin: 0 9px;
+  }
+
+  .container {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .text {
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+
+  .footer-title {
+    position: relative;
+    left: 140px;
+  }
+}
